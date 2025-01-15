@@ -16,7 +16,7 @@
   <div class="app-bar-inner">
     <div class="app-bar-inner2">
       <div class="header-logo-wrapper">
-        <div class="header-logo">cgbuen</div>
+        <a class="header-logo" href="/">cgbuen</a>
       </div>
         <div class="nav-tabs">
           {#each items as item, i}
@@ -90,6 +90,7 @@
   }
   .header-logo {
     color: white;
+    display: block;
     font-size: 32px;
     font-weight: bold;
     line-height: 1;

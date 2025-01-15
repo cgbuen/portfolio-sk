@@ -1,5 +1,5 @@
 <script>
-  import {PUBLIC_TWITCH, PUBLIC_INSTAGRAM, PUBLIC_YOUTUBE_V, PUBLIC_GITHUB, PUBLIC_DISCORD_S, PUBLIC_TWITTER} from '$env/static/public'
+  import {PUBLIC_TWITCH, PUBLIC_INSTAGRAM, PUBLIC_YOUTUBE_V, PUBLIC_GITHUB, PUBLIC_DISCORD_S, PUBLIC_TWITTER, PUBLIC_MAILTO} from '$env/static/public'
   import Twitch from 'virtual:icons/mdi/twitch'
   import Instagram from 'virtual:icons/mdi/instagram'
   import YouTube from 'virtual:icons/mdi/youtube'
@@ -31,11 +31,16 @@
         <x.icon />
       </a>
     {/each}
+  </div>
+  <div class="line">
     {#each iconsLine2 as x, i}
       <a class="link-blank-icon" href={x.href}>
         <x.icon />
       </a>
     {/each}
+      <a class="link-blank-icon" href={PUBLIC_MAILTO}>
+        <Mail />
+      </a>
   </div>
 </div>
 

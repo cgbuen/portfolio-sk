@@ -1,10 +1,37 @@
 <script>
+  import { getContext } from "svelte";
   let items = [
     { name: 'Projects', href: '/projects' },
     { name: 'Photos', href: '/photography' },
     { name: 'Keyboards', href: '/collection' },
   ];
 </script>
+
+<svelte:head>
+  <title>Home{getContext('titleSuffix')}</title>
+</svelte:head>
+
+<div class="hero-container">
+  <div class="hero-text-container">
+    <h1 class="headline">cgbuen</h1>
+    <div class="headline cheat">cgbuen</div>
+    <div class="hero-subtext-container">
+      <a class="hero-link" href="/projects">Software Engineering</a>
+      <a class="hero-link" href="/photography">Concert Photography</a>
+      <a class="hero-link" href="/collection">Keyboard Building</a>
+    </div>
+    <section class="heroBox"></section>
+  </div>
+  <section class="homeOutside"></section>
+</div>
+<div class="items">
+  {#each items as item, i}
+    <div class="item">
+      <a class="item-link {item.name.toLowerCase()}" href={item.href} aria-label={item.name}></a>
+      <span class="item-text">{item.name}</span>
+    </div>
+  {/each}
+</div>
 
 <style>
   .hero-container {
@@ -141,25 +168,3 @@
     transform: translate(-50%, -50%);
   }
 </style>
-
-<div class="hero-container">
-  <div class="hero-text-container">
-    <h1 class="headline">cgbuen</h1>
-    <div class="headline cheat">cgbuen</div>
-    <div class="hero-subtext-container">
-      <a class="hero-link" href="/projects">Software Engineering</a>
-      <a class="hero-link" href="/photography">Concert Photography</a>
-      <a class="hero-link" href="/collection">Keyboard Building</a>
-    </div>
-    <section class="heroBox"></section>
-  </div>
-  <section class="homeOutside"></section>
-</div>
-<div class="items">
-  {#each items as item, i}
-    <div class="item">
-      <a class="item-link {item.name.toLowerCase()}" href={item.href} aria-label={item.name}></a>
-      <span class="item-text">{item.name}</span>
-    </div>
-  {/each}
-</div>

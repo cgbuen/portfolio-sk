@@ -1,11 +1,12 @@
 <script>
   import {PUBLIC_TWITCH, PUBLIC_INSTAGRAM, PUBLIC_YOUTUBE_V, PUBLIC_GITHUB, PUBLIC_DISCORD_S, PUBLIC_TWITTER} from '$env/static/public'
-  import Twitch from './assets/twitch.svelte'
-  import Instagram from './assets/instagram.svelte'
-  import YouTube from './assets/youtube.svelte'
-  import GitHub from './assets/github.svelte'
-  import Discord from './assets/discord-2.svelte'
-  import Twitter from './assets/twitter.svelte'
+  import Twitch from 'virtual:icons/mdi/twitch'
+  import Instagram from 'virtual:icons/mdi/instagram'
+  import YouTube from 'virtual:icons/mdi/youtube'
+  import GitHub from 'virtual:icons/mdi/github'
+  import Discord from 'virtual:icons/mdi/discord'
+  import Twitter from 'virtual:icons/mdi/twitter'
+  import Mail from 'virtual:icons/mdi/email'
 
   export let type;
 
@@ -32,9 +33,7 @@
     {/each}
     {#each iconsLine2 as x, i}
       <a class="link-blank-icon" href={x.href}>
-        <div class="icon">
-          <x.icon />
-        </div>
+        <x.icon />
       </a>
     {/each}
   </div>

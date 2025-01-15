@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
-  import LightModeIcon from '~icons/mdi/LightMode';
-  import DarkModeIcon from '~icons/mdi/DarkMode';
+  import LightModeIcon from 'virtual:icons/mdi/white-balance-sunny';
+  import DarkModeIcon from 'virtual:icons/mdi/weather-night';
 
   const isLightMode = writable(false);
 
@@ -39,10 +39,5 @@
     left: 25px;
     padding: 10px;
     position: fixed;
-  }
-  .icon-wrapper svg {
-    display: block;
-    height: 1em;
-    width: 1em;
   }
 </style>

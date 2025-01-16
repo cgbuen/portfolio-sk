@@ -2,20 +2,18 @@
   interface Props {
     src?: string;
     name?: string;
-    onClick?: () => void;
     right?: boolean;
     children?: () => any;
   }
   let {
     src = '',
     name = '',
-    onClick,
     right = false,
     children,
   }: Props = $props()
 </script>
 
-<button class="card-wrapper" onclick={onClick}>
+<div class="card-wrapper">
   <div class="card-body {right ? 'right' : ''}">
     {#if !right}
       <img class="card-img" src={src} alt={name} />
@@ -28,13 +26,12 @@
       <img class="card-img right" src={src} alt={name} />
     {/if}
   </div>
-</button>
+</div>
 
 <style>
   .card-wrapper {
     background: rgba(128, 128, 128, 0.15);
     box-shadow: 1px 1px 7px 0 rgba(32, 32, 32, 0.3);
-    cursor: auto;
     display: block;
     margin-bottom: 20px;
     padding: 20px;

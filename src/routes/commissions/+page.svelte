@@ -48,6 +48,7 @@
   .pointer {
     cursor: pointer;
     display: block;
+    text-decoration: none;
   }
   .text {
     font-weight: normal;

@@ -5,7 +5,7 @@
   import Drawer from '$lib/drawer.svelte';
 	import ColorSchemePicker from '../lib/color-scheme-picker.svelte'
 	import { page } from '$app/state'
-	import { setContext, getContext } from 'svelte'
+	import { setContext } from 'svelte'
 	setContext('titleSuffix', ' — cgbuen')
 	setContext('items', [
     { name: 'Software', href: '/projects' },

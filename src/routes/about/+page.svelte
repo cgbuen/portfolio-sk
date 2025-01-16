@@ -16,7 +16,7 @@
     portfolio of work completed both professionally and for leisure.
   </p>
   <p>
-    For any meaningful<a href="#footnote"><sup>†</sup></a> inquiries, you
+    For any meaningful<sup id="footnote-source" class="superscript">[<a href="#footnote-target">†</a>]</sup> inquiries, you
     can reach me through Discord ({PUBLIC_DISCORD_P}),
     <a href={PUBLIC_INSTAGRAM}>Instagram</a> DM, or
     <a href={PUBLIC_MAILTO}>email</a>.
@@ -34,9 +34,9 @@
   <p>
     Past broadcasts can be found <a href={PUBLIC_YOUTUBE_V}>here</a>.
   </p>
-  <p id="footnote">
+  <p id="footnote-target">
     <small class="footnote">
-      <sup>†</sup> If you would like to contact me to advertise your SEO or
+      <sup class="superscript">[<a href="#footnote-source">†</a>]</sup> If you would like to contact me to advertise your SEO or
       other marketing services, you can go fuck yourself, thanks!
     </small>
   </p>
@@ -50,7 +50,16 @@
     display: block;
     width: 100%;
   }
+  .superscript {
+    font-size: 13px;
+  }
+  .superscript a {
+    text-decoration: none;
+  }
+  #footnote-target {
+    padding-left: 17px;
+  }
   .footnote {
-    margin-left: -8px;
+    margin-left: -17px;
   }
 </style>

@@ -110,12 +110,14 @@
     align-items: center;
     background-color: transparent;
     border-radius: 0;
+    color: unset;
     cursor: pointer;
     display: flex;
     font-weight: bold;
     height: 64px;
     min-width: 115px;
     justify-content: center;
+    text-decoration: none;
     text-transform: none;
     transition: 0.5s background-color ease-in-out;
   }

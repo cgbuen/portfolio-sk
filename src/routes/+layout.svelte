@@ -9,7 +9,7 @@
 	let { children } = $props()
 </script>
 
- <div>
+ <div class="body-inner">
 	<Header />
 	<div class="outer-wrapper">
 		<div class={page.data.isHome ? "" : "page-wrapper"}>

@@ -1,29 +1,27 @@
-<script>
-  import { onMount } from 'svelte';
-  import { writable } from 'svelte/store';
+<script lang="ts">
+  import { browser } from '$app/environment';
   import LightModeIcon from 'virtual:icons/mdi/white-balance-sunny';
   import DarkModeIcon from 'virtual:icons/mdi/weather-night';
+  import { onMount } from 'svelte';
 
-  const isLightMode = writable(false);
+  let lightMode: boolean;
 
-  onMount(() => {
-    const unsubscribe = isLightMode.subscribe(value => {
-      document.body.classList.toggle('light-mode', value);
-    });
-
-    return () => {
-      unsubscribe();
-      document.body.classList.remove('light-mode');
-    };
-  });
+  if (browser) {
+    console.log('browser')
+    lightMode = localStorage.getItem('lightMode') === 'true'
+  }
 
   function toggleMode() {
-    isLightMode.update(value => !value);
+    lightMode = !lightMode
+		localStorage.setItem('lightMode', `${lightMode}`);
+    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('light');
   }
+
 </script>
 
-<button class="icon-wrapper" on:click={toggleMode}>
-  {#if $isLightMode}
+<button class="icon-wrapper" onclick={toggleMode}>
+  {#if lightMode}
     <DarkModeIcon height={0} />
   {:else}
     <LightModeIcon height={0} />

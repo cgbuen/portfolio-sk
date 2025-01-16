@@ -1,23 +1,30 @@
-<script>
+<script lang="ts">
+  interface Props {
+    className?: string;
+    src?: string;
+    name?: string;
+    onClick?: () => void;
+    right?: boolean;
+    children?: () => any;
+  }
   let {
-    classes = {cardTitle: undefined, cardDescription: undefined},
     className = '',
     src = '',
     name = '',
-    onClick = () => {},
+    onClick,
     right = false,
     children,
-  } = $props()
+  }: Props = $props()
 </script>
 
-<button class="card-wrapper {className}" onClick={onClick}>
+<button class="card-wrapper {className}" onclick={onClick}>
   <div class="card-body {right ? 'right' : ''}">
     {#if !right}
       <img class="card-img" src={src} alt={name} />
     {/if}
     <div class="card-header-wrapper">
-      <div class="card-title {classes.cardTitle}">{name}</div>
-      <div class="card-description {classes.cardDescription}">{@render children?.()}</div>
+      <div class="card-title dark:text-white text-neutral-900">{name}</div>
+      <div class="card-description">{@render children?.()}</div>
     </div>
     {#if right}
       <img class="card-img right" src={src} alt={name} />

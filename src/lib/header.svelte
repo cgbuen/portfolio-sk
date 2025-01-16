@@ -13,15 +13,15 @@
 </script>
 
 <div class="app-bar-styled">
-  <div class="app-bar-inner">
-    <div class="app-bar-inner2">
+  <div class="app-bar-inner bg-white dark:bg-neutral-900">
+    <div class="app-bar-inner2 text-neutral-900 dark:text-white">
       <div class="header-logo-wrapper">
-        <a class="header-logo" href="/">cgbuen</a>
+        <a class="header-logo text-neutral-900 dark:text-white" href="/">cgbuen</a>
       </div>
         <div class="nav-tabs">
           {#each items as item, i}
             <a
-              class="nav-tab {page.url.toString().includes(item.href) && !item.blank ? 'selected' : ''}"
+              class="nav-tab text-neutral-900 dark:text-white {page.url.toString().includes(item.href) && !item.blank ? 'selected text-white' : ''}"
               href={item.href}
               target={item.blank ? '_blank' : ''}
             >
@@ -40,7 +40,6 @@
     z-index: 999999;
   }
   .app-bar-inner {
-    background: #151515;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-color: rgba(255, 255, 255, 0.12);
     display: flex;
@@ -50,9 +49,6 @@
     right: 0;
     top: 0;
     z-index: 1310;
-  }
-  .light-mode .app-bar-inner {
-    background: white;
   }
   .app-bar-inner2 {
     justify-content: space-between;
@@ -65,7 +61,6 @@
     display: flex;
     position: relative;
     align-items: center;
-    color: white;
   }
   @media (min-width: 900px) and (max-width: 950px) {
     .app-bar-inner2 {
@@ -89,7 +84,6 @@
     }
   }
   .header-logo {
-    color: white;
     display: block;
     font-size: 32px;
     font-weight: bold;
@@ -98,9 +92,6 @@
     text-decoration: underline;
     text-decoration-color: #69c;
     top: -4px;
-  }
-  .light-mode .header-logo {
-    color: #151515;
   }
   .nav-tabs {
     display: flex;
@@ -111,7 +102,6 @@
     align-items: center;
     background-color: transparent;
     border-radius: 0;
-    color: white;
     cursor: pointer;
     display: flex;
     font-weight: bold;
@@ -123,12 +113,6 @@
   }
   .nav-tab.selected {
     background-color: #69c;
-  }
-  .light-mode .nav-tab {
-    color: #151515;
-  }
-  .light-mode .nav-tab.selected {
-    color: white;
   }
   @media (max-width: 951px) {
     .nav-tab {

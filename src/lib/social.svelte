@@ -27,18 +27,18 @@
 <div class="social-container {type}">
   <div class="line">
     {#each iconsLine1 as x, i}
-      <a class="link-blank-icon" href={x.href}>
+      <a class="link-blank-icon text-neutral-900 dark:text-white" href={x.href}>
         <x.icon />
       </a>
     {/each}
   </div>
   <div class="line">
     {#each iconsLine2 as x, i}
-      <a class="link-blank-icon" href={x.href}>
+      <a class="link-blank-icon text-neutral-900 dark:text-white" href={x.href}>
         <x.icon />
       </a>
     {/each}
-      <a class="link-blank-icon" href={PUBLIC_MAILTO}>
+      <a class="link-blank-icon text-neutral-900 dark:text-white" href={PUBLIC_MAILTO}>
         <Mail />
       </a>
   </div>
@@ -54,7 +54,6 @@
     }
   }
   .link-blank-icon {
-    color: white;
     display: inline-block;
     height: 48px;
     margin: 0 8px;
@@ -110,9 +109,5 @@
     .footer .link-blank-icon {
       display: inline-block;
     }
-  }
-  .light-mode .footer .icon {
-    fill: #151515;
-    filter: none;
   }
 </style>

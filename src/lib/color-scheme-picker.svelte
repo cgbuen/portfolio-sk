@@ -2,12 +2,10 @@
   import { browser } from '$app/environment';
   import LightModeIcon from 'virtual:icons/mdi/white-balance-sunny';
   import DarkModeIcon from 'virtual:icons/mdi/weather-night';
-  import { onMount } from 'svelte';
 
   let lightMode: boolean;
 
   if (browser) {
-    console.log('browser')
     lightMode = localStorage.getItem('lightMode') === 'true'
   }
 

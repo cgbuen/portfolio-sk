@@ -35,7 +35,7 @@
     Past broadcasts can be found <a href={PUBLIC_YOUTUBE_V}>here</a>.
   </p>
   <p id="footnote">
-    <small>
+    <small class="footnote">
       <sup>†</sup> If you would like to contact me to advertise your SEO or
       other marketing services, you can go fuck yourself, thanks!
     </small>
@@ -49,5 +49,8 @@
   .bio {
     display: block;
     width: 100%;
+  }
+  .footnote {
+    margin-left: -8px;
   }
 </style>

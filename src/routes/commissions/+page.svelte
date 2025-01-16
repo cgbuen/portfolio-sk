@@ -13,7 +13,7 @@
   <p>A few things you can commission me for.</p>
   <Card
     name="Shoots"
-    src={`${PUBLIC_ASSET}/resources/shoots.jpg`}
+    src="{PUBLIC_ASSET}/resources/shoots.jpg"
   >
     <div class="text dark:text-white text-neutral-900">
       Send me a message on Discord ({PUBLIC_DISCORD_P}) or 
@@ -24,7 +24,7 @@
   <a class="pointer" href="https://forms.gle/tefHXyEh9WsAJjBs9" target="_blank">
     <Card
       name="Film Development & Scanning"
-      src={`${PUBLIC_ASSET}/resources/film.jpg`}
+      src="{PUBLIC_ASSET}/resources/film.jpg"
     >
       <div class="text dark:text-white text-neutral-900">
         I’ll develop and scan your photo film, ready for print or social media, starting at $3 per roll. 
@@ -34,7 +34,7 @@
   </a>
   <Card
     name="Keyboard Builds"
-    src={`${PUBLIC_ASSET}/resources/keyboards.jpg`}
+    src="{PUBLIC_ASSET}/resources/keyboards.jpg"
   >
     <div class="text dark:text-white text-neutral-900">
       Send me a message on Discord ({PUBLIC_DISCORD_P}), 

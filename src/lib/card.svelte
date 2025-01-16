@@ -1,6 +1,5 @@
 <script lang="ts">
   interface Props {
-    className?: string;
     src?: string;
     name?: string;
     onClick?: () => void;
@@ -8,7 +7,6 @@
     children?: () => any;
   }
   let {
-    className = '',
     src = '',
     name = '',
     onClick,
@@ -17,7 +15,7 @@
   }: Props = $props()
 </script>
 
-<button class="card-wrapper {className}" onclick={onClick}>
+<button class="card-wrapper" onclick={onClick}>
   <div class="card-body {right ? 'right' : ''}">
     {#if !right}
       <img class="card-img" src={src} alt={name} />

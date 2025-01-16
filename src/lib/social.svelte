@@ -54,6 +54,7 @@
     }
   }
   .link-blank-icon {
+    color: unset;
     display: inline-block;
     height: 48px;
     margin: 0 8px;

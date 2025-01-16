@@ -4,7 +4,7 @@
   import MenuIcon from './menu-icon.svelte';
 
   let items = getContext('items')
-  let innerWidth = $state(0)
+  let innerWidth = $state(953)
 
   let { open, toggleOpen } = $props()
 
@@ -15,11 +15,9 @@
 <div class="app-bar-styled">
   <div class="app-bar-inner bg-white dark:bg-neutral-900">
     <div class="app-bar-inner2 text-neutral-900 dark:text-white">
-      {#if innerWidth < 953}
-        <button class="menu-icon-outer" onclick={toggleOpen}>
-          <MenuIcon open={open} />
-        </button>
-      {/if}
+      <button class="menu-icon-outer" onclick={toggleOpen}>
+        <MenuIcon open={open} />
+      </button>
       <div class="header-logo-wrapper">
         <a class="header-logo text-neutral-900 dark:text-white" href="/">cgbuen</a>
       </div>
@@ -69,13 +67,14 @@
     position: relative;
     align-items: center;
   }
-  @media (min-width: 900px) and (max-width: 950px) {
-    .app-bar-inner2 {
-      justify-content: center;
-    }
-  }
   .menu-icon-outer {
+    display: none;
     padding: 12px;
+  }
+  @media (max-width: 952px) {
+    .menu-icon-outer {
+      display: block;
+    }
   }
   .header-logo-wrapper {
     cursor: pointer;
@@ -83,7 +82,7 @@
     margin-left: 0;
     margin-right: 10px;
   }
-  @media (max-width: 899px) {
+  @media (max-width: 952px) {
     .header-logo-wrapper {
       left: 50%;
       position: absolute;
@@ -102,9 +101,14 @@
     top: -4px;
   }
   .nav-tabs {
-    display: flex;
+    display: none;
     justify-content: center;
     position: relative;
+  }
+  @media (min-width: 953px) {
+    .nav-tabs {
+      display: flex;
+    }
   }
   .nav-tab {
     align-items: center;
@@ -124,7 +128,7 @@
   .nav-tab.selected {
     background-color: #69c;
   }
-  @media (max-width: 951px) {
+  @media (max-width: 952px) {
     .nav-tab {
       min-width: 126px;
     }

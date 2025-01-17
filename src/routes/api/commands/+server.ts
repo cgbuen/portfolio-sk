@@ -11,7 +11,6 @@ export async function GET() {
   const date = Date.now()
   const commandsResponse = await fetch(`${PUBLIC_ASSET}/chatbot/commands.json?${date}`);
   const commandsResponseJson = await commandsResponse.json()
-  console.log(commandsResponseJson)
   const response = commandsResponseJson.map((command: Command) => {
     if (command.command === 'commands') {
       command.href = '/resources/commands'

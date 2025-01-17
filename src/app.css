@@ -10,6 +10,12 @@ h1 {
   margin: 15px 0;
 }
 
+h2 {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 15px 0;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -73,9 +79,11 @@ ul {
 .hide {
   display: none;
 }
+
 .visible {
   visibility: visible;
 }
+
 .clickable {
   cursor: pointer;
   pointer-events: auto;
@@ -90,4 +98,28 @@ body {
 .light body {
   background: white;
   color: #171717;
+}
+
+.table {
+  width: 100%;
+}
+
+.table td {
+  padding: 0.5rem;
+}
+
+.table thead {
+  border-bottom: 1px solid white;
+}
+
+.table thead td {
+  font-weight: bold;
+}
+
+.table tbody tr:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.table tbody td:first-child {
+  white-space: nowrap;
 }

@@ -2,12 +2,6 @@
   import { getContext } from 'svelte';
   import { page } from '$app/state';
   
-  interface Desc {
-    id: string
-    name: string
-    description: string
-  }
-  
   interface Piece {
     id: string
     name: string
@@ -17,6 +11,12 @@
     notes: string
   }
 
+  interface Desc {
+    id: string
+    name: string
+    description: string
+  }
+  
   const sections = [
     'Stream Video',
     'Stream Audio',
@@ -28,11 +28,11 @@
   ]
   const gear = page.data.gear.gear
   const gearDescriptions = page.data.gear.gearDescriptions
-  const getParagraphs = (section: string) => {
-    return (gearDescriptions.find((desc: Desc) => desc.name === section) || {description: ''}).description.split('\n\n')
-  }
   const getGearSection = (section: string) => {
     return gear.filter((piece: Piece) => piece.active && piece.kind === section)
+  }
+  const getParagraphs = (section: string) => {
+    return (gearDescriptions.find((desc: Desc) => desc.name === section) || {description: ''}).description.split('\n\n')
   }
 </script>
 
@@ -43,42 +43,39 @@
 <div class="gear-container">
   <h1>Gear</h1>
   <p>A list of gear that I recommend.</p>
-  {#each sections as section}
-    <h2>{section}</h2>
-    <div>
-      {#each (getParagraphs(section)) as paragraph}
-        <p>{paragraph}</p>
-      {/each}
-      <table class="table">
-        <thead>
-          <tr>
-            <td>Item</td>
-            <td>Notes</td>
-          </tr>
-        </thead>
-        <tbody>
-          {#each (getGearSection(section)) as piece}
+  {#each sections as section, i}
+    <div class="collapse collapse-arrow">
+      <input type="checkbox" />
+      <div class="collapse-title"><h2>{section}</h2></div>
+      <div class="collapse-content">
+        {#each (getParagraphs(section)) as paragraph}
+          <p>{paragraph}</p>
+        {/each}
+        <table class="table">
+          <thead>
             <tr>
-              <td class="item-name"><a class="link" href="{piece.url}">{piece.name}</a></td>
-              <td>{piece.notes}</td>
+              <td>Item</td>
+              <td>Notes</td>
             </tr>
-          {/each}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {#each (getGearSection(section)) as piece}
+              <tr>
+                <td class="item-name"><a class="link" href="{piece.url}">{piece.name}</a></td>
+                <td>{piece.notes}</td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
     </div>
   {/each}
 </div>
 
 <style>
-  .table {
+  .collapse {
+    border-radius: 0;
     border-bottom: 1px solid white;
-    margin-bottom: 50px;
-  }
-  .table thead {
-    border-bottom: 0;
-  }
-  .table tr:last-child td {
-    padding-bottom: 30px;
   }
   .item-name:first-child {
     white-space: initial;

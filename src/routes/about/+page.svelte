@@ -18,12 +18,12 @@
   <p>
     For any meaningful<sup id="footnote-source" class="superscript">[<a href="#footnote-target">†</a>]</sup> inquiries, you
     can reach me through Discord ({PUBLIC_DISCORD_P}),
-    <a href={PUBLIC_INSTAGRAM}>Instagram</a> DM, or
+    <a href={PUBLIC_INSTAGRAM} target="_blank">Instagram</a> DM, or
     <a href={PUBLIC_MAILTO}>email</a>.
   </p>
   <p>
     I also stream a few different types of content on{" "}
-    <a href={PUBLIC_TWITCH}>Twitch</a>, including:
+    <a href={PUBLIC_TWITCH} target="_blank">Twitch</a>, including:
   </p>
   <ul>
     <li>Custom mechanical keyboard builds</li>
@@ -32,7 +32,7 @@
     <li>Personal software projects</li>
   </ul>
   <p>
-    Past broadcasts can be found <a href={PUBLIC_YOUTUBE_V}>here</a>.
+    Past broadcasts can be found <a href={PUBLIC_YOUTUBE_V} target="_blank">here</a>.
   </p>
   <p id="footnote-target">
     <small class="footnote">

@@ -25,16 +25,16 @@
 </script>
 
 <div class="social-container {type}">
-  <div class="line">
+  <div class="line-variant">
     {#each iconsLine1 as x, i}
-      <a class="link-blank-icon text-neutral-900 dark:text-white" href={x.href}>
+      <a class="link-blank-icon text-neutral-900 dark:text-white" href={x.href} target="_blank">
         <x.icon />
       </a>
     {/each}
   </div>
-  <div class="line">
+  <div class="line-variant">
     {#each iconsLine2 as x, i}
-      <a class="link-blank-icon text-neutral-900 dark:text-white" href={x.href}>
+      <a class="link-blank-icon text-neutral-900 dark:text-white" href={x.href} target="_blank">
         <x.icon />
       </a>
     {/each}
@@ -45,11 +45,11 @@
 </div>
 
 <style>
-  .line {
+  .line-variant {
     display: inline-block;
   }
   @media (max-width: 1080px), (min-width: 1920px) {
-    .line {
+    .line-variant {
       display: block;
     }
   }
@@ -70,6 +70,7 @@
   }
   .social-container {
     bottom: 15%;
+    margin-bottom: 15px;
     position: absolute;
     right: 15%;
   }
@@ -89,25 +90,25 @@
       display: block;
     }
   }
-  .footer {
+  .footer-variant {
     position: static;
   }
   @media (max-width: 1080px) {
-    .footer {
+    .footer-variant {
       display: block;
     }
   }
-  .footer .line {
+  .footer-variant .line-variant {
     @media (max-width: 1080px), (min-width: 1920px) {
       display: inline-block;
     }
   }
-  .footer .link-blank-icon {
+  .footer-variant .link-blank-icon {
     height: 32px;
     width: 32px;
   }
   @media (max-width: 1080px), (min-width: 1920px) {
-    .footer .link-blank-icon {
+    .footer-variant .link-blank-icon {
       display: inline-block;
     }
   }

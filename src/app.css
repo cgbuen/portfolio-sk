@@ -2,7 +2,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
+:root {
+  background: #171717;
+}
 
 h1 {
   font-weight: 700;
@@ -101,23 +103,12 @@ body {
 }
 
 .table {
-  width: 100%;
+  font-size: .9rem;
 }
 
-.table td {
-  padding: 0.5rem;
-}
-
-.table thead {
-  border-bottom: 1px solid white;
-}
-
-.table thead td {
-  font-weight: bold;
-}
-
-.table tbody tr:hover {
-  background: rgba(128, 128, 128, 0.1);
+.table :where(thead, tfoot) {
+  font-size: .9rem;
+  color: white;
 }
 
 .table tbody td:first-child {

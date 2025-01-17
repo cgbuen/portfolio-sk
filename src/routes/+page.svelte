@@ -1,9 +1,9 @@
 <script>
   import { getContext } from "svelte";
   let items = [
-    { name: 'Projects', href: '/projects' },
-    { name: 'Photos', href: '/photography' },
-    { name: 'Keyboards', href: '/collection' },
+    { name: 'Software', href: '/software' },
+    { name: 'Concerts', href: '/concerts' },
+    { name: 'Keyboards', href: '/keyboards' },
   ];
 </script>
 
@@ -16,9 +16,9 @@
     <h1 class="headline">cgbuen</h1>
     <div class="headline cheat">cgbuen</div>
     <div class="hero-subtext-container">
-      <a class="hero-link" href="/projects">Software Engineering</a>
-      <a class="hero-link" href="/photography">Concert Photography</a>
-      <a class="hero-link" href="/collection">Keyboard Building</a>
+      <a class="hero-link" href="/software">Software Engineering</a>
+      <a class="hero-link" href="/concerts">Concert Photography</a>
+      <a class="hero-link" href="/keyboards">Keyboard Building</a>
     </div>
     <section class="heroBox"></section>
   </div>
@@ -131,22 +131,22 @@
       height: 240px;
     }
   }
-  .item-link.projects {
+  .item-link.software {
     background-image: url('https://ph-1080.cgbuen.com/projects/moovweb-geico-01.jpg');
     background-position: 2% 72%;
   }
   @media (max-width: 568px) {
-    .item-link.projects {
+    .item-link.software {
       background-size: cover;
       background-position: center;
     }
   }
-  .item-link.photos {
+  .item-link.concerts {
     background-image: url('https://ph-1080.cgbuen.com/concerts/0135%2026.jpg');
     background-position: center 75%;
   }
   @media (max-width: 568px) {
-    .item-link.photos {
+    .item-link.concerts {
       background-position: center 60%;
     }
   }

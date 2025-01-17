@@ -8,9 +8,9 @@
 	import { setContext } from 'svelte'
 	setContext('titleSuffix', ' — cgbuen')
 	setContext('items', [
-    { name: 'Software', href: '/projects' },
-    { name: 'Concerts', href: '/photography' },
-    { name: 'Keyboards', href: '/collection' },
+    { name: 'Software', href: '/software' },
+    { name: 'Concerts', href: '/concerts' },
+    { name: 'Keyboards', href: '/keyboards' },
     { name: 'About', href: '/about' },
     { name: 'Commissions', href: '/commissions' },
     { name: 'Resources', href: '/resources' },

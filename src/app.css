@@ -3,6 +3,10 @@
 @import 'tailwindcss/utilities';
 
 :root {
+  background: white;
+}
+
+:root.dark {
   background: #171717;
 }
 
@@ -108,7 +112,6 @@ body {
 
 .table :where(thead, tfoot) {
   font-size: .9rem;
-  color: white;
 }
 
 .table tbody td:first-child {

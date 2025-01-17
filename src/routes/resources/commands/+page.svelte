@@ -13,9 +13,9 @@
   <table class="table">
     <thead>
       <tr>
-        <td>Command</td>
-        <td>Aliases</td>
-        <td>Description</td>
+        <td class="text-neutral-900 dark:text-white">Command</td>
+        <td class="text-neutral-900 dark:text-white">Aliases</td>
+        <td class="text-neutral-900 dark:text-white">Description</td>
       </tr>
     </thead>
     <tbody>

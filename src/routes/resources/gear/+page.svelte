@@ -51,22 +51,24 @@
         {#each (getParagraphs(section)) as paragraph}
           <p>{paragraph}</p>
         {/each}
-        <table class="table">
-          <thead>
-            <tr>
-              <td>Item</td>
-              <td>Notes</td>
-            </tr>
-          </thead>
-          <tbody>
-            {#each (getGearSection(section)) as piece}
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
               <tr>
-                <td class="item-name"><a class="link" href="{piece.url}">{piece.name}</a></td>
-                <td>{piece.notes}</td>
+                <td class="text-neutral-900 dark:text-white">Item</td>
+                <td class="text-neutral-900 dark:text-white">Notes</td>
               </tr>
-            {/each}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {#each (getGearSection(section)) as piece}
+                <tr>
+                  <td class="item-name"><a class="link" href="{piece.url}">{piece.name}</a></td>
+                  <td>{piece.notes}</td>
+                </tr>
+              {/each}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   {/each}
@@ -76,6 +78,12 @@
   .collapse {
     border-radius: 0;
     border-bottom: 1px solid white;
+  }
+  .collapse-title, .collapse-content {
+    padding-left: 0;
+  }
+  .collapse-content .table-wrapper {
+    padding: 15px;
   }
   .item-name:first-child {
     white-space: initial;

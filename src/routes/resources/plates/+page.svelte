@@ -13,9 +13,9 @@
   <table class="table">
     <thead>
       <tr>
-        <td>Name</td>
-        <td>Kerf</td>
-        <td>Notes</td>
+        <td class="text-neutral-900 dark:text-white">Name</td>
+        <td class="text-neutral-900 dark:text-white">Kerf</td>
+        <td class="text-neutral-900 dark:text-white">Notes</td>
       </tr>
     </thead>
     <tbody>

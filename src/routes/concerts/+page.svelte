@@ -1,5 +1,9 @@
 <script lang="ts">
   import { getContext } from 'svelte';
+  import { page } from '$app/state';
+  import PhotoswipeGallery from 'svelte-photoswipe-gallery'
+
+  const images = page.data.concerts
 </script>
 
 <svelte:head>
@@ -8,7 +12,13 @@
 
 <div class="concerts-container">
   <h1>Concerts</h1>
-  <p>Under construction.</p>
+  <p>Here are a few live music events that I&rsquo;m lucky to have shot. Click each image for more info.</p>
+  <PhotoswipeGallery
+    images={images}
+    showDescription={true}
+    showDownloadButton={false}
+    showFullscreenButton={false}
+  />
 </div>
 
 <style>

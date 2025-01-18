@@ -2518,6 +2518,11 @@ svelte-eslint-parser@^0.43.0:
     postcss "^8.4.39"
     postcss-scss "^4.0.9"
 
+svelte-photoswipe-gallery@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/svelte-photoswipe-gallery/-/svelte-photoswipe-gallery-0.0.4.tgz#3bede00e70ec3ed47ac842e146649bc7007bcdf4"
+  integrity sha512-NrzRIgVBJoA0cOyWmX1TJ04mmUAsfDWU991PLaiOLqr75L+zedLttPouiOv/wFSZMACmo0YKI2UzYTAPkwaPYQ==
+
 svelte-viewport-info@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/svelte-viewport-info/-/svelte-viewport-info-1.0.3.tgz#96dc086fb869d0decf71a99f7515ec390e4e292d"

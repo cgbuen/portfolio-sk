@@ -9,7 +9,7 @@
 
 <div class="keyboards-container">
   <h1>Keyboards</h1>
-  <p>Under construction.</p>
+  <p>Under re-construction.</p>
 </div>
 
 <style>

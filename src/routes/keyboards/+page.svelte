@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-  import { page } from '$app/state';
+  import {getContext} from 'svelte'
+  import {page} from '$app/state'
 </script>
 
 <svelte:head>
-    <title>Commands &mdash; Resources{getContext('titleSuffix')}</title>
+  <title>Commands &mdash; Resources{getContext('titleSuffix')}</title>
 </svelte:head>
 
 <div class="keyboards-container">

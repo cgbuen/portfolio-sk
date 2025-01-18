@@ -48,13 +48,17 @@ svg {
   width: 100%;
 }
 
-a, a:hover, a:active, a:visited {
+a,
+a:hover,
+a:active,
+a:visited {
   color: #69c;
   font-weight: bold;
   text-decoration: underline;
 }
 
-p, ul {
+p,
+ul {
   margin-bottom: 15px;
 }
 
@@ -68,10 +72,10 @@ ul {
   z-index: 999999;
 }
 .yarl__container {
-  background-color: rgba(0, 0, 0, .85) !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
 }
 .yarl__slide_description {
-  background-color: rgba(17, 17, 17, .85) !important;
+  background-color: rgba(17, 17, 17, 0.85) !important;
   border-radius: 5px;
   display: inline-block !important;
   padding: 10px;
@@ -107,11 +111,11 @@ body {
 }
 
 .table {
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .table :where(thead, tfoot) {
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .table tbody td:first-child {

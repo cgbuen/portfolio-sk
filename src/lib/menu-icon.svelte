@@ -1,9 +1,9 @@
 <script>
-import Hamburger from 'virtual:icons/mdi/menu'
-import Close from 'virtual:icons/mdi/close'
-import { scale } from 'svelte/transition';
+  import Hamburger from 'virtual:icons/mdi/menu'
+  import Close from 'virtual:icons/mdi/close'
+  import {scale} from 'svelte/transition'
 
-let { open } = $props()
+  let {open} = $props()
 </script>
 
 <div class="icon-wrapper">

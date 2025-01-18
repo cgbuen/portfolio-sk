@@ -1,29 +1,26 @@
 <script lang="ts">
   interface Props {
-    src?: string;
-    name?: string;
-    right?: boolean;
-    children?: () => any;
+    src?: string
+    name?: string
+    right?: boolean
+    children?: () => any
   }
-  let {
-    src = '',
-    name = '',
-    right = false,
-    children,
-  }: Props = $props()
+  let {src = '', name = '', right = false, children}: Props = $props()
 </script>
 
 <div class="card-variant-wrapper">
   <div class="card-variant-body {right ? 'right' : ''}">
     {#if !right}
-      <img class="card-variant-img" src={src} alt={name} />
+      <img class="card-variant-img" {src} alt={name} />
     {/if}
     <div class="card-variant-header-wrapper">
-      <div class="card-variant-title dark:text-white text-neutral-900">{name}</div>
+      <div class="card-variant-title text-neutral-900 dark:text-white">
+        {name}
+      </div>
       <div class="card-variant-description">{@render children?.()}</div>
     </div>
     {#if right}
-      <img class="card-variant-img right" src={src} alt={name} />
+      <img class="card-variant-img right" {src} alt={name} />
     {/if}
   </div>
 </div>
@@ -64,11 +61,13 @@
       display: block;
     }
   }
-  .card-variant-body.right, .right {
+  .card-variant-body.right,
+  .right {
     margin: 0 0 0 15px;
   }
   @media (max-width: 568px) {
-    .card-variant-body.right, .right {
+    .card-variant-body.right,
+    .right {
       margin: 15px 0 0 0;
     }
   }

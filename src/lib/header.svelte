@@ -1,13 +1,12 @@
 <script>
   import {page} from '$app/state'
-  import { getContext } from 'svelte';
-  import MenuIcon from './menu-icon.svelte';
+  import {getContext} from 'svelte'
+  import MenuIcon from './menu-icon.svelte'
 
   let items = getContext('items')
   let innerWidth = $state(953)
 
-  let { open, toggleOpen } = $props()
-
+  let {open, toggleOpen} = $props()
 </script>
 
 <svelte:window bind:innerWidth />
@@ -16,24 +15,30 @@
   <div class="app-bar-inner bg-white dark:bg-neutral-900">
     <div class="app-bar-inner2 text-neutral-900 dark:text-white">
       <button class="menu-icon-outer" onclick={toggleOpen}>
-        <MenuIcon open={open} />
+        <MenuIcon {open} />
       </button>
       <div class="header-logo-wrapper">
-        <a class="header-logo text-neutral-900 dark:text-white" href="/">cgbuen</a>
+        <a class="header-logo text-neutral-900 dark:text-white" href="/"
+          >cgbuen</a
+        >
       </div>
-        {#if innerWidth >= 953}
-          <div class="nav-tabs">
-            {#each items as item, i}
-              <a
-                class="nav-tab text-neutral-900 dark:text-white {page.url.toString().includes(item.href) && !item.blank ? 'selected text-white' : ''}"
-                href={item.href}
-                target={item.blank ? '_blank' : ''}
-              >
-                {item.name}
-              </a>
-            {/each}
-          </div>
-        {/if}
+      {#if innerWidth >= 953}
+        <div class="nav-tabs">
+          {#each items as item, i}
+            <a
+              class="nav-tab text-neutral-900 dark:text-white {page.url
+                .toString()
+                .includes(item.href) && !item.blank
+                ? 'selected text-white'
+                : ''}"
+              href={item.href}
+              target={item.blank ? '_blank' : ''}
+            >
+              {item.name}
+            </a>
+          {/each}
+        </div>
+      {/if}
     </div>
   </div>
 </div>

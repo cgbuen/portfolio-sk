@@ -1,19 +1,19 @@
 <script lang="ts">
   import {page} from '$app/state'
-  import { getContext } from "svelte";
-  import { fade } from 'svelte/transition';
+  import {getContext} from 'svelte'
+  import {fade} from 'svelte/transition'
 
   interface Item {
-    name: string;
-    href: string;
-    blank?: boolean;
+    name: string
+    href: string
+    blank?: boolean
   }
   interface Props {
-    open: boolean;
-    toggleOpen?: () => void;
+    open: boolean
+    toggleOpen?: () => void
   }
-  let items: Item[] = getContext("items");
-  let { open, toggleOpen }: Props = $props()
+  let items: Item[] = getContext('items')
+  let {open, toggleOpen}: Props = $props()
 </script>
 
 <div class="drawer-wrapper">
@@ -29,7 +29,9 @@
   <div class="drawer bg-neutral-900 {open ? 'open' : ''}">
     {#each items as item}
       <a
-        class="item {page.url.toString().includes(item.href) && !item.blank ? 'selected text-white' : ''}"
+        class="item {page.url.toString().includes(item.href) && !item.blank
+          ? 'selected text-white'
+          : ''}"
         href={item.href}
         target={item.blank ? '_blank' : ''}
         onclick={toggleOpen}

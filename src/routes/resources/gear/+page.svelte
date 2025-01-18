@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-  import { page } from '$app/state';
-  
+  import {getContext} from 'svelte'
+  import {page} from '$app/state'
+
   interface Piece {
     id: string
     name: string
@@ -16,7 +16,7 @@
     name: string
     description: string
   }
-  
+
   const sections = [
     'Stream Video',
     'Stream Audio',
@@ -32,12 +32,16 @@
     return gear.filter((piece: Piece) => piece.active && piece.kind === section)
   }
   const getParagraphs = (section: string) => {
-    return (gearDescriptions.find((desc: Desc) => desc.name === section) || {description: ''}).description.split('\n\n')
+    return (
+      gearDescriptions.find((desc: Desc) => desc.name === section) || {
+        description: '',
+      }
+    ).description.split('\n\n')
   }
 </script>
 
 <svelte:head>
-    <title>Gear &mdash; Resources{getContext('titleSuffix')}</title>
+  <title>Gear &mdash; Resources{getContext('titleSuffix')}</title>
 </svelte:head>
 
 <div class="gear-container">
@@ -48,7 +52,7 @@
       <input type="checkbox" />
       <div class="collapse-title"><h2>{section}</h2></div>
       <div class="collapse-content">
-        {#each (getParagraphs(section)) as paragraph}
+        {#each getParagraphs(section) as paragraph}
           <p>{paragraph}</p>
         {/each}
         <div class="table-wrapper">
@@ -60,9 +64,11 @@
               </tr>
             </thead>
             <tbody>
-              {#each (getGearSection(section)) as piece}
+              {#each getGearSection(section) as piece}
                 <tr>
-                  <td class="item-name"><a class="link" href="{piece.url}">{piece.name}</a></td>
+                  <td class="item-name"
+                    ><a class="link" href={piece.url}>{piece.name}</a></td
+                  >
                   <td>{piece.notes}</td>
                 </tr>
               {/each}
@@ -79,7 +85,8 @@
     border-radius: 0;
     border-bottom: 1px solid white;
   }
-  .collapse-title, .collapse-content {
+  .collapse-title,
+  .collapse-content {
     padding-left: 0;
   }
   .collapse-content .table-wrapper {

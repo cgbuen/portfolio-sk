@@ -1,4 +1,4 @@
-import { PUBLIC_ASSET } from "$env/static/public";
+import {PUBLIC_ASSET} from '$env/static/public'
 
 interface Build {
   src: string
@@ -25,7 +25,7 @@ interface Switchset {
   purchase_date: string
 }
 
-export async function GET({ url }) {
+export async function GET({url}) {
   const filter = 'Built'
   const requests = []
   requests.push(fetch(`${PUBLIC_ASSET}/keyboards/collection.json`))
@@ -37,22 +37,31 @@ export async function GET({ url }) {
   const builds = buildsResponse
     .map((build: Build) => {
       build.src = `${PUBLIC_ASSET}/keyboards/${build.src}.jpg?${Date.now()}`
-      if (build.assembly_variant.includes('A') && build.build_status === filter) {
+      if (
+        build.assembly_variant.includes('A') &&
+        build.build_status === filter
+      ) {
         build.loaded = true
         build.displayed = true
       }
       return build
     })
     .sort((x: Build, y: Build) => {
-      const useDateX = ['TBD', 'N/A'].includes(x.date_built_latest) ? x.date_bought: x.date_built_latest
-      const useDateY = ['TBD', 'N/A'].includes(y.date_built_latest) ? y.date_bought: y.date_built_latest
+      const useDateX = ['TBD', 'N/A'].includes(x.date_built_latest)
+        ? x.date_bought
+        : x.date_built_latest
+      const useDateY = ['TBD', 'N/A'].includes(y.date_built_latest)
+        ? y.date_bought
+        : y.date_built_latest
       return useDateX.localeCompare(useDateY)
     })
     .reverse()
 
   const keysetsResponse = await responses[1].json()
   let keysets = keysetsResponse
-    .filter((keyset: Keyset) => ['Mounted', 'Unused'].includes(keyset.mount_status))
+    .filter((keyset: Keyset) =>
+      ['Mounted', 'Unused'].includes(keyset.mount_status),
+    )
     .map((keyset: Keyset) => {
       keyset.src = `${PUBLIC_ASSET}/keyboards/${keyset.src}.jpg`
       return keyset
@@ -64,26 +73,30 @@ export async function GET({ url }) {
 
   const switchesResponse = await responses[2].json()
   let switches = switchesResponse
-    .filter((switchset: Switchset) => ['Tune', 'Ready', 'Mounted', 'Re-tune'].includes(switchset.mount_status))
+    .filter((switchset: Switchset) =>
+      ['Tune', 'Ready', 'Mounted', 'Re-tune'].includes(switchset.mount_status),
+    )
     .sort((x: Switchset, y: Switchset) => {
       return x.purchase_date.localeCompare(y.purchase_date)
     })
     .reverse()
 
-  const dates = responses.map(x => new Date(x.headers.get('Last-Modified') ?? 0).valueOf())
+  const dates = responses.map((x) =>
+    new Date(x.headers.get('Last-Modified') ?? 0).valueOf(),
+  )
 
   if (url.searchParams.get('keyset_mount_status') === 'unused') {
-    keysets = [...keysets].reverse().sort(x => {
+    keysets = [...keysets].reverse().sort((x) => {
       return x.mount_status === 'Unused' ? -1 : 1
     })
   }
   if (url.searchParams.get('switch_mount_status') === 'ready') {
-    switches = [...switches].reverse().sort(x => {
+    switches = [...switches].reverse().sort((x) => {
       return x.mount_status === 'Ready' ? -1 : 1
     })
   }
   if (url.searchParams.get('switch_mount_status') === 'tunable') {
-    switches = [...switches].reverse().sort(x => {
+    switches = [...switches].reverse().sort((x) => {
       return ['Tune', 'Re-tune'].includes(x.mount_status) ? -1 : 1
     })
   }
@@ -92,12 +105,14 @@ export async function GET({ url }) {
     builds,
     keysets,
     switches,
-    date: new Date(dates.reduce((a, b) => Math.max(a, b), -Infinity)).toLocaleString()
+    date: new Date(
+      dates.reduce((a, b) => Math.max(a, b), -Infinity),
+    ).toLocaleString(),
   }
 
   return new Response(JSON.stringify(response), {
-    headers : {
-      'Content-Type': 'application/json'
-    }
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 }

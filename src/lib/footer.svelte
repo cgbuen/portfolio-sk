@@ -1,11 +1,11 @@
 <script>
-  import Social from './social.svelte';
+  import Social from './social.svelte'
 </script>
 
 <div class="footer-container">
   <Social type="footer-variant" />
   <div class="copyright">
-      &copy; {(new Date()).getFullYear()} cgbuen
+    &copy; {new Date().getFullYear()} cgbuen
   </div>
 </div>
 

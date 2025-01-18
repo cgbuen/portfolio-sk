@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-  import { page } from '$app/state';
+  import {getContext} from 'svelte'
+  import {page} from '$app/state'
 </script>
 
 <svelte:head>
-    <title>Commands &mdash; Resources{getContext('titleSuffix')}</title>
+  <title>Commands &mdash; Resources{getContext('titleSuffix')}</title>
 </svelte:head>
 
 <div class="commands-container">
@@ -41,7 +41,9 @@
               {:else if part.startsWith('Link to') && command.href.startsWith('/')}
                 <a href={command.href}>Link</a> to {part.split('Link to')[1]}
               {:else if part.startsWith('Link to')}
-                <a href={command.href} target="_blank">Link</a> to {part.split('Link to')[1]}
+                <a href={command.href} target="_blank">Link</a> to {part.split(
+                  'Link to',
+                )[1]}
               {:else}
                 {part}
               {/if}
@@ -58,10 +60,10 @@
     width: 30%;
   }
   code {
-    background: rgba(128, 128, 128, .2);
+    background: rgba(128, 128, 128, 0.2);
     border-radius: 5px;
     display: inline-block;
-    font-size: 13px; 
+    font-size: 13px;
     padding: 5px;
     margin: 2px;
   }

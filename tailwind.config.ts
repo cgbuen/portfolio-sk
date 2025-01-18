@@ -1,16 +1,16 @@
-import containerQueries from '@tailwindcss/container-queries';
-import typography from '@tailwindcss/typography';
-import type { Config } from 'tailwindcss';
-import DaisyUI from 'daisyui';
+import containerQueries from '@tailwindcss/container-queries'
+import typography from '@tailwindcss/typography'
+import type {Config} from 'tailwindcss'
+import DaisyUI from 'daisyui'
 
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
+  content: ['./src/**/*.{html,js,svelte,ts}'],
 
-	theme: {
-		extend: {}
-	},
+  theme: {
+    extend: {},
+  },
 
-	darkMode: 'selector',
+  darkMode: 'selector',
 
-	plugins: [typography, containerQueries, DaisyUI]
-} satisfies Config;
+  plugins: [typography, containerQueries, DaisyUI],
+} satisfies Config

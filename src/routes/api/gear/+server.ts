@@ -1,4 +1,4 @@
-import { PUBLIC_ASSET } from "$env/static/public";
+import {PUBLIC_ASSET} from '$env/static/public'
 
 export async function GET() {
   const date = Date.now()
@@ -13,8 +13,8 @@ export async function GET() {
     gearDescriptions,
   }
   return new Response(JSON.stringify(response), {
-    headers : {
-      'Content-Type': 'application/json'
-    }
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 }

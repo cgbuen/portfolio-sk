@@ -1,10 +1,10 @@
 <script>
-  import { getContext } from "svelte";
+  import {getContext} from 'svelte'
   let items = [
-    { name: 'Software', href: '/software' },
-    { name: 'Concerts', href: '/concerts' },
-    { name: 'Keyboards', href: '/keyboards' },
-  ];
+    {name: 'Software', href: '/software'},
+    {name: 'Concerts', href: '/concerts'},
+    {name: 'Keyboards', href: '/keyboards'},
+  ]
 </script>
 
 <svelte:head>
@@ -27,7 +27,11 @@
 <div class="items">
   {#each items as item, i}
     <div class="item">
-      <a class="item-link {item.name.toLowerCase()}" href={item.href} aria-label={item.name}></a>
+      <a
+        class="item-link {item.name.toLowerCase()}"
+        href={item.href}
+        aria-label={item.name}
+      ></a>
       <span class="item-text">{item.name}</span>
     </div>
   {/each}

@@ -1,15 +1,43 @@
 <script lang="ts">
   import {getContext} from 'svelte'
   import {page} from '$app/state'
+  import { PUBLIC_DISCORD_P, PUBLIC_TWITCH } from '$env/static/public'
+  import Keyboards from './keyboards.svelte'
 </script>
 
 <svelte:head>
-  <title>Commands &mdash; Resources{getContext('titleSuffix')}</title>
+  <title>Keyboards{getContext('titleSuffix')}</title>
 </svelte:head>
 
 <div class="keyboards-container">
   <h1>Keyboards</h1>
-  <p>Under re-construction.</p>
+  <p>
+    Below is my personal collection of computer keyboards (primarily in
+    HHKB-inspired layouts), along with accompanying keysets and switches. I
+    stream my build process to <a href={PUBLIC_TWITCH} target="_blank">Twitch</a>.
+  </p>
+  <p>
+    For more information on keyboards that are for sale, DM me on Discord
+    ({PUBLIC_DISCORD_P}).
+  </p>
+  <p><i>Last updated: {page.data.collection.date} GMT</i></p>
+
+  <div role="tablist" class="tabs ">
+    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Keyboards" checked />
+    <div role="tabpanel" class="tab-content p-6">
+      <Keyboards />
+    </div>
+
+    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Keysets" />
+    <div role="tabpanel" class="tab-content p-6">
+      Tab content 2
+    </div>
+
+    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Switches" />
+    <div role="tabpanel" class="tab-content p-6">
+      Tab content 3
+    </div>
+  </div>
 </div>
 
 <style>

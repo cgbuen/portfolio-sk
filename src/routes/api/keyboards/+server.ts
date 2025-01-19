@@ -1,6 +1,6 @@
 import {PUBLIC_ASSET} from '$env/static/public'
 
-interface Keyboard {
+export interface Keyboard {
   id: string
   board_id: string
   src: string
@@ -14,14 +14,14 @@ interface Keyboard {
   displayed: boolean
 }
 
-interface Keyset {
+export interface Keyset {
   src: string
   name: string
   mount_status: string
   purchase_date: string
 }
 
-interface Switchset {
+export interface Switchset {
   src: string
   name: string
   mount_status: string

@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 :root {
-  background: white;
+  background-color: rgb(240 253 250 / var(--tw-bg-opacity, 1));
 }
 
 :root.dark {
@@ -106,7 +106,7 @@ body {
 }
 
 .light body {
-  background: white;
+  background-color: rgb(240 253 250 / var(--tw-bg-opacity, 1));
   color: #171717;
 }
 

@@ -1,6 +1,13 @@
 <script>
   import {page} from '$app/state'
   import {PUBLIC_ASSET} from '$env/static/public'
+  const EXCLUDE_WEIGHT = [
+    'springswap',
+    'alps',
+    'matias',
+    'halleffect',
+    'buckling',
+  ]
 </script>
 
 <div>
@@ -34,7 +41,11 @@
           <td>{switchSet.switch_type}</td>
           <td>{switchSet.mount_status}</td>
           <td>{switchSet.keyboard}</td>
-          <td>{switchSet.weight_springs}</td>
+          <td>
+            {#if !EXCLUDE_WEIGHT.includes(switchSet.weight_springs)}
+              {switchSet.weight_springs}
+            {/if}
+          </td>
         </tr>
       {/each}
     </tbody>

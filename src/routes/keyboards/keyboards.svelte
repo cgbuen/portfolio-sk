@@ -1,5 +1,6 @@
 <script lang="ts">
   import {page} from '$app/state'
+  import { activeKeyboard } from '$lib/active-keyboard.svelte'
   import type {Keyboard} from '../api/keyboards/+server'
   import GridSquare from './grid-square.svelte'
 
@@ -8,10 +9,12 @@
   const onTheWay = page.data.collection.keyboards.onTheWay
   const forSale = page.data.collection.keyboards.forSale
   const displayedList = $state(built)
-  const activeKeyboard = $state({})
+  let modal: HTMLDialogElement
 
   const openDialog = (buildSet: Keyboard[]) => {
-    return () => {}
+    return () => {
+      console.log(buildSet[0])
+    }
   }
 </script>
 
@@ -20,7 +23,7 @@
   <div>Grid List</div>
   {displayedList.length} results
   <div class="content-container">
-    {#each displayedList as buildSet, i}
+    {#each displayedList as buildSet}
       <GridSquare
         onclick={openDialog(buildSet)}
         src={buildSet[0].src}

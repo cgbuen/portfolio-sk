@@ -2,17 +2,17 @@
   let {onclick, src, name, description} = $props()
 </script>
 
-<div
-  class="grid-square"
-  {onclick}
-  onkeydown={onclick}
-  role="button"
-  tabindex={0}
->
-  <img {src} alt={name} width="250" height="166.66" />
-  <h2>{name}</h2>
-  <div>{description}</div>
-</div>
+  <div
+    class="grid-square"
+    {onclick}
+    onkeydown={onclick}
+    role="button"
+    tabindex={0}
+  >
+    <img {src} alt={name} width="250" height="166.66" />
+    <h2>{name}</h2>
+    <div>{description}</div>
+  </div>
 
 <style>
   .grid-square {

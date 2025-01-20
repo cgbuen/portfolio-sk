@@ -6,6 +6,8 @@
   import ColorSchemePicker from '../lib/color-scheme-picker.svelte'
   import {page} from '$app/state'
   import {setContext} from 'svelte'
+  import KeyboardDialog from '$lib/keyboard-dialog.svelte'
+  import { activeKeyboard } from '$lib/active-keyboard.svelte'
   setContext('titleSuffix', ' — cgbuen')
   setContext('items', [
     {name: 'Software', href: '/software'},
@@ -33,6 +35,7 @@
   <Footer />
   <ColorSchemePicker />
   <Drawer open={menuOpen} {toggleOpen} />
+  <KeyboardDialog activeKeyboard={activeKeyboard} />
 </div>
 
 <style>

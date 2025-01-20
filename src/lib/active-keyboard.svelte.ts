@@ -1,15 +1,15 @@
-import type { Keyboard } from "../routes/api/keyboards/+server";
+import type {Keyboard} from '../routes/api/keyboards/+server'
 
 export function createActiveKeyboard() {
-  let activeKeyboard = $state({} as Keyboard)
+  let activeKeyboard = $state([] as Keyboard[])
 
   return {
-    get get() {
+    get() {
       return activeKeyboard
     },
-    set(newKeyboard: Keyboard) {
+    set(newKeyboard: Keyboard[]) {
       activeKeyboard = newKeyboard
-    }
+    },
   }
 }
 

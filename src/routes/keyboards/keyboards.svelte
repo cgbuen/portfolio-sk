@@ -1,6 +1,6 @@
 <script lang="ts">
   import {page} from '$app/state'
-  import { activeKeyboard } from '$lib/active-keyboard.svelte'
+  import {activeKeyboard} from '$lib/active-keyboard.svelte'
   import type {Keyboard} from '../api/keyboards/+server'
   import GridSquare from './grid-square.svelte'
 
@@ -13,7 +13,7 @@
 
   const openDialog = (buildSet: Keyboard[]) => {
     return () => {
-      console.log(buildSet[0])
+      activeKeyboard.set(buildSet)
     }
   }
 </script>

@@ -12,7 +12,9 @@
 <svelte:window bind:innerWidth />
 
 <div class="app-bar-styled">
-  <div class="app-bar-inner bg-white dark:bg-neutral-900">
+  <div
+    class="app-bar-inner border-neutral-200 bg-teal-50 dark:border-neutral-700 dark:bg-neutral-900"
+  >
     <div class="app-bar-inner2 text-neutral-900 dark:text-white">
       <button class="menu-icon-outer" onclick={toggleOpen}>
         <MenuIcon {open} />
@@ -50,8 +52,8 @@
     z-index: 999999;
   }
   .app-bar-inner {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    border-color: rgba(255, 255, 255, 0.12);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
     display: flex;
     justify-content: center;
     left: 0;

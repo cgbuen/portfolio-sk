@@ -2,6 +2,7 @@
   let {onclick, src, name, description} = $props()
 </script>
 
+<label class="grid-square-wrapper" for="keyboard-modal">
   <div
     class="grid-square"
     {onclick}
@@ -13,12 +14,15 @@
     <h2>{name}</h2>
     <div>{description}</div>
   </div>
+</label>
 
 <style>
+  .grid-square-wrapper {
+    margin-bottom: 25px;
+  }
   .grid-square {
     background: rgba(128, 128, 128, 0.15);
     box-shadow: 1px 1px 7px 0 rgba(32, 32, 32, 0.3);
-    margin-bottom: 25px;
     padding: 15px;
     text-align: center;
     transition: background 0.2s ease-in-out;

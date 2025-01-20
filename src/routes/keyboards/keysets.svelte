@@ -15,7 +15,7 @@
         <td>Keyboard</td>
         <td>6UC</td>
         <td>6UO</td>
-        <td>Legend<br />Quality</td>
+        <td>Quality</td>
       </tr>
     </thead>
     <tbody>
@@ -47,7 +47,8 @@
   .table tbody td {
     &:first-child {
       white-space: normal;
-      padding: 0;
+      padding: 10px 0;
+      width: 100px;
     }
     &:nth-child(3) {
       white-space: nowrap;

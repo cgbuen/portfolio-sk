@@ -19,7 +19,9 @@
 </script>
 
 <div>
-  {displayedList.length} results
+  <div class="top-section">
+    <div class="results-count">{displayedList.length} results</div>
+  </div>
   <div class="content-container">
     {#each displayedList as buildSet}
       <GridSquare
@@ -38,5 +40,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0 -10px;
+  }
+  .results-count {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 0 15px;
+    text-align: right;
+    white-space: nowrap;
   }
 </style>

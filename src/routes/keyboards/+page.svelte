@@ -29,7 +29,7 @@
       type="radio"
       name="keyboard-tab"
       role="tab"
-      class="tab"
+      class="tab text-neutral-900 dark:text-white"
       aria-label="Keyboards"
       checked
     />
@@ -41,7 +41,7 @@
       type="radio"
       name="keyboard-tab"
       role="tab"
-      class="tab"
+      class="tab text-neutral-900 dark:text-white"
       aria-label="Keysets"
     />
     <div role="tabpanel" class="tab-content">
@@ -52,7 +52,7 @@
       type="radio"
       name="keyboard-tab"
       role="tab"
-      class="tab"
+      class="tab text-neutral-900 dark:text-white"
       aria-label="Switches"
     />
     <div role="tabpanel" class="tab-content">
@@ -62,4 +62,18 @@
 </div>
 
 <style>
+  .tab {
+    font-size: 18px;
+    font-weight: bold;
+    height: auto;
+    margin-right: 10px;
+    padding: 10px 20px;
+    &:is(input:checked) {
+      background: #69c;
+    }
+  }
+  .tab-content {
+    border-top: 2px solid #69c;
+    padding-top: 20px;
+  }
 </style>

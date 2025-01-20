@@ -74,6 +74,6 @@
   }
   .tab-content {
     border-top: 2px solid #69c;
-    padding-top: 20px;
+    padding-top: 15px;
   }
 </style>

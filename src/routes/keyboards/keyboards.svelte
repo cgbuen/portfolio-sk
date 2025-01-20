@@ -44,7 +44,7 @@
   .results-count {
     font-size: 18px;
     font-weight: bold;
-    padding: 5px 0 15px;
+    padding-bottom: 15px;
     text-align: right;
     white-space: nowrap;
   }

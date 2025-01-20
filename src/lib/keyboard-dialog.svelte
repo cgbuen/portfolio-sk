@@ -3,7 +3,6 @@
   import BuildInfo from '../routes/keyboards/build-info.svelte'
   let {activeKeyboard} = $props()
   let buildActive = $state(0)
-  let calculatedHeight = $state(0)
 
   const setBuildActive = (num: number) => {
     return () => {
@@ -18,11 +17,7 @@
     <div class="modal-box max-w-6xl bg-teal-50 dark:bg-neutral-900">
       <label class="close" for="keyboard-modal"><CloseIcon /></label>
       <h2>{activeKeyboard[0]?.name}</h2>
-      <div
-        class="modal-content-container"
-        style="height: {calculatedHeight}"
-        bind:clientHeight={calculatedHeight}
-      >
+      <div class="modal-content-container">
         {#if activeKeyboard.length === 1}
           <div class="single">
             <BuildInfo build={activeKeyboard[0]} />

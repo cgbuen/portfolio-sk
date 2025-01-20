@@ -3,6 +3,8 @@
   import {page} from '$app/state'
   import {PUBLIC_DISCORD_P, PUBLIC_TWITCH} from '$env/static/public'
   import Keyboards from './keyboards.svelte'
+  import Keysets from './keysets.svelte'
+  import Switches from './switches.svelte'
 </script>
 
 <svelte:head>
@@ -25,33 +27,37 @@
   <div role="tablist" class="tabs">
     <input
       type="radio"
-      name="my_tabs_2"
+      name="keyboard-tab"
       role="tab"
       class="tab"
       aria-label="Keyboards"
       checked
     />
-    <div role="tabpanel" class="tab-content p-6">
+    <div role="tabpanel" class="tab-content">
       <Keyboards />
     </div>
 
     <input
       type="radio"
-      name="my_tabs_2"
+      name="keyboard-tab"
       role="tab"
       class="tab"
       aria-label="Keysets"
     />
-    <div role="tabpanel" class="tab-content p-6">Tab content 2</div>
+    <div role="tabpanel" class="tab-content">
+      <Keysets />
+    </div>
 
     <input
       type="radio"
-      name="my_tabs_2"
+      name="keyboard-tab"
       role="tab"
       class="tab"
       aria-label="Switches"
     />
-    <div role="tabpanel" class="tab-content p-6">Tab content 3</div>
+    <div role="tabpanel" class="tab-content">
+      <Switches />
+    </div>
   </div>
 </div>
 

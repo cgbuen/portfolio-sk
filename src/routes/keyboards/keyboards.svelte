@@ -19,8 +19,6 @@
 </script>
 
 <div>
-  <div>Filters:</div>
-  <div>Grid List</div>
   {displayedList.length} results
   <div class="content-container">
     {#each displayedList as buildSet}

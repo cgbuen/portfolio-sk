@@ -1,16 +1,12 @@
 import type {Keyboard} from '../routes/api/keyboards/+server'
 
-export function createActiveKeyboard() {
-  let activeKeyboard = $state([] as Keyboard[])
+class ActiveKeyboard {
+  keyboard = $state([] as Keyboard[])
+  buildActive = $state(0)
 
-  return {
-    get() {
-      return activeKeyboard
-    },
-    set(newKeyboard: Keyboard[]) {
-      activeKeyboard = newKeyboard
-    },
+  constructor(keyboard: Keyboard[]) {
+    this.keyboard = keyboard
   }
 }
 
-export const activeKeyboard = createActiveKeyboard()
+export const activeKeyboard = new ActiveKeyboard([])

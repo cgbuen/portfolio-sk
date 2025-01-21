@@ -2,13 +2,6 @@
   import CloseIcon from 'virtual:icons/mdi/close.svg'
   import BuildInfo from '../routes/keyboards/build-info.svelte'
   let {activeKeyboard} = $props()
-  let buildActive = $state(0)
-
-  const setBuildActive = (num: number) => {
-    return () => {
-      buildActive = num
-    }
-  }
 </script>
 
 <div>
@@ -16,21 +9,23 @@
   <div class="modal" role="dialog">
     <div class="modal-box max-w-6xl bg-teal-50 dark:bg-neutral-900">
       <label class="close" for="keyboard-modal"><CloseIcon /></label>
-      <h2>{activeKeyboard[0]?.name}</h2>
+      <h2>{activeKeyboard.keyboard[0]?.name}</h2>
       <div class="modal-content-container">
         {#if activeKeyboard.length === 1}
           <div class="single">
-            <BuildInfo build={activeKeyboard[0]} />
+            <BuildInfo build={activeKeyboard.keyboard[0]} />
           </div>
         {:else}
           <div class="collapses">
-            {#each activeKeyboard as build, i}
+            {#each activeKeyboard.keyboard as build, i}
               <div class="collapse collapse-arrow">
                 <input
                   type="radio"
                   name="build-accordion"
-                  onclick={setBuildActive(i)}
-                  checked={buildActive === i}
+                  onclick={() => {
+                    activeKeyboard.buildActive = i
+                  }}
+                  checked={activeKeyboard.buildActive === i}
                 />
                 <div class="collapse-title">Build {i + 1}</div>
                 <div class="collapse-content">
@@ -40,9 +35,9 @@
             {/each}
           </div>
         {/if}
-        {#each activeKeyboard as build, i}
+        {#each activeKeyboard.keyboard as build, i}
           <div
-            class="background {buildActive === i ? '' : 'hide'}"
+            class="background {activeKeyboard.buildActive === i ? '' : 'hide'}"
             style="background-image: url({build.src})"
           ></div>
         {/each}

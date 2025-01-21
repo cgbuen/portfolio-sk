@@ -13,7 +13,8 @@
 
   const openDialog = (buildSet: Keyboard[]) => {
     return () => {
-      activeKeyboard.set(buildSet)
+      activeKeyboard.keyboard = buildSet
+      activeKeyboard.buildActive = 0
     }
   }
 </script>

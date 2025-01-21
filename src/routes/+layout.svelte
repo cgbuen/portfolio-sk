@@ -35,7 +35,7 @@
   <Footer />
   <ColorSchemePicker />
   <Drawer open={menuOpen} {toggleOpen} />
-  <KeyboardDialog activeKeyboard={activeKeyboard.get()} />
+  <KeyboardDialog {activeKeyboard} />
 </div>
 
 <style>

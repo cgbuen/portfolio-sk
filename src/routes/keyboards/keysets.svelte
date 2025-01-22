@@ -54,6 +54,7 @@
           src={keyset.src}
           name={keyset.keyset}
           description="Purchased: {keyset.purchase_date}"
+          labelFor="keyset-modal"
         />
       {/each}
       {#if displayedList.length % 3 === 2}

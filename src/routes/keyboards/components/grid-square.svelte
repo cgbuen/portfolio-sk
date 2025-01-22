@@ -1,8 +1,8 @@
 <script lang="ts">
-  let {onclick, src, name, description} = $props()
+  let {onclick, src, name, description, labelFor} = $props()
 </script>
 
-<label class="grid-square-wrapper" for="keyboard-modal">
+<label class="grid-square-wrapper" for={labelFor}>
   <div
     class="grid-square"
     {onclick}
@@ -32,5 +32,9 @@
   }
   h2 {
     margin: 0;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>

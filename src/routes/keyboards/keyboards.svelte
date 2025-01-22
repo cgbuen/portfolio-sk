@@ -61,6 +61,7 @@
           src={buildSet[0].src}
           name={buildSet[0].name}
           description="{useDate(buildSet).label} {useDate(buildSet).value}"
+          labelFor="keyboard-modal"
         />
       {/each}
       {#if displayedList.length % 3 === 2}

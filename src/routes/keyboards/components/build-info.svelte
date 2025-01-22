@@ -1,5 +1,5 @@
 <script>
-  import {showable} from '$lib/showable'
+  import {showable} from '$lib/helpers/showable'
 
   let {build} = $props()
 </script>

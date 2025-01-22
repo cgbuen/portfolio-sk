@@ -1,6 +1,7 @@
 <script>
   import {page} from '$app/state'
   import {PUBLIC_ASSET} from '$env/static/public'
+  import ModalTd from './components/modal-td.svelte'
   const EXCLUDE_WEIGHT = [
     'springswap',
     'alps',
@@ -11,41 +12,43 @@
 </script>
 
 <div>
-  <table class="table">
+  <table class="img-table table">
     <thead>
       <tr>
-        <td></td>
-        <td>Name</td>
-        <td>Purchased</td>
-        <td>Mount</td>
-        <td>Type</td>
-        <td>Status</td>
-        <td>Keyboard</td>
-        <td>Weight</td>
+        <th></th>
+        <th class="text-neutral-900 dark:text-white">Name</th>
+        <th class="text-neutral-900 dark:text-white">Purchased</th>
+        <th class="text-neutral-900 dark:text-white">Mount</th>
+        <th class="text-neutral-900 dark:text-white">Type</th>
+        <th class="text-neutral-900 dark:text-white">Status</th>
+        <th class="text-neutral-900 dark:text-white">Keyboard</th>
+        <th class="text-neutral-900 dark:text-white">Weight</th>
       </tr>
     </thead>
     <tbody>
       {#each page.data.collection.switches as switchSet}
         <tr>
-          <td
-            ><img
+          <ModalTd labelFor="switches-modal">
+            <img
               src="{PUBLIC_ASSET}/keyboards/unavailable.jpg"
               alt={switchSet.name}
               width="100"
               height="66.49"
-            /></td
-          >
-          <td>{switchSet.name}</td>
-          <td>{switchSet.purchase_date}</td>
-          <td>{switchSet.mount}</td>
-          <td>{switchSet.switch_type}</td>
-          <td>{switchSet.mount_status}</td>
-          <td>{switchSet.keyboard}</td>
-          <td>
+            />
+          </ModalTd>
+          <ModalTd labelFor="switches-modal">{switchSet.name}</ModalTd>
+          <ModalTd labelFor="switches-modal" style="white-space: nowrap">
+            {switchSet.purchase_date}
+          </ModalTd>
+          <ModalTd labelFor="switches-modal">{switchSet.mount}</ModalTd>
+          <ModalTd labelFor="switches-modal">{switchSet.switch_type}</ModalTd>
+          <ModalTd labelFor="switches-modal">{switchSet.mount_status}</ModalTd>
+          <ModalTd labelFor="switches-modal">{switchSet.keyboard}</ModalTd>
+          <ModalTd labelFor="switches-modal">
             {#if !EXCLUDE_WEIGHT.includes(switchSet.weight_springs)}
               {switchSet.weight_springs}
             {/if}
-          </td>
+          </ModalTd>
         </tr>
       {/each}
     </tbody>
@@ -53,14 +56,4 @@
 </div>
 
 <style>
-  table tbody td {
-    &:nth-child(1) {
-      white-space: normal;
-      padding: 10px 0;
-      width: 100px;
-    }
-    &:nth-child(3) {
-      white-space: nowrap;
-    }
-  }
 </style>

@@ -1,6 +1,6 @@
 <script>
   import {getContext} from 'svelte'
-  import Card from '$lib/card.svelte'
+  import {Card} from '$lib/components'
   import {
     PUBLIC_ASSET,
     PUBLIC_DISCORD_P,

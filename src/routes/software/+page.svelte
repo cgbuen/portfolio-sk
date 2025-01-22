@@ -1,7 +1,7 @@
 <script lang="ts">
   import {getContext} from 'svelte'
   import {page} from '$app/state'
-  import Card from '$lib/card.svelte'
+  import {Card} from '$lib/components'
 </script>
 
 <svelte:head>

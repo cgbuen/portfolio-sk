@@ -1,13 +1,10 @@
 <script lang="ts">
   import '../app.css'
-  import Header from '$lib/header.svelte'
-  import Footer from '$lib/footer.svelte'
-  import Drawer from '$lib/drawer.svelte'
-  import ColorSchemePicker from '../lib/color-scheme-picker.svelte'
+  import {ColorSchemePicker, Drawer, Header, Footer} from '$lib/components'
   import {page} from '$app/state'
   import {setContext} from 'svelte'
-  import KeyboardDialog from '$lib/keyboard-dialog.svelte'
-  import {activeKeyboard} from '$lib/active-keyboard.svelte'
+  import KeyboardDialog from './keyboards/keyboard-dialog.svelte'
+  import {activeKeyboard} from '$lib/state/active-keyboard.svelte'
   setContext('titleSuffix', ' — cgbuen')
   setContext('items', [
     {name: 'Software', href: '/software'},

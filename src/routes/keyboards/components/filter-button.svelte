@@ -31,7 +31,6 @@
     display: inline-block;
     flex: 1;
     font-weight: bold;
-    margin: 0 15px 10px 0;
     padding: 5px 10px;
   }
   .icon-wrapper {

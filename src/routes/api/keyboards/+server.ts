@@ -5,13 +5,15 @@ export interface Keyboard {
   board_id: string
   src: string
   name: string
+  type: string
   build_status: string
   assembly_variant: string
   date_built: string
   date_built_latest: string
   date_bought: string
-  loaded: boolean
-  displayed: boolean
+  plate: string
+  switches: string
+  keycaps: string
 }
 
 export interface Keyset {

@@ -8,13 +8,13 @@
   <thead>
     <tr>
       <th></th>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Builds</th>
-      <th>Last built</th>
-      <th>Plate</th>
-      <th>Switches</th>
-      <th>Keycaps</th>
+      <th class="text-neutral-900 dark:text-white">Name</th>
+      <th class="text-neutral-900 dark:text-white">Type</th>
+      <th class="text-neutral-900 dark:text-white">Builds</th>
+      <th class="text-neutral-900 dark:text-white">Last built</th>
+      <th class="text-neutral-900 dark:text-white">Plate</th>
+      <th class="text-neutral-900 dark:text-white">Switches</th>
+      <th class="text-neutral-900 dark:text-white">Keycaps</th>
     </tr>
   </thead>
   <tbody>

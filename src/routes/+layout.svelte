@@ -1,6 +1,6 @@
 <script lang="ts">
   import '../app.css'
-  import {ColorSchemePicker, Drawer, Header, Footer} from '$lib'
+  import {ColorSchemePicker, Drawer, Header, Footer} from '$lib/components'
   import {page} from '$app/state'
   import {setContext} from 'svelte'
   import KeyboardDialog from './keyboards/keyboard-dialog.svelte'

@@ -1,6 +1,6 @@
 <script>
   import {getContext} from 'svelte'
-  import {Card} from '$lib'
+  import {Card} from '$lib/components'
   import {page} from '$app/state'
 </script>
 

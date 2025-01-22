@@ -1,4 +1,4 @@
-import type {Keyboard} from '../routes/api/keyboards/+server'
+import type {Keyboard} from '../../routes/api/keyboards/+server'
 
 export const useDate = (keyboard: Keyboard[]) => {
   if (

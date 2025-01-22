@@ -1,6 +1,6 @@
 <script lang="ts">
   import CloseIcon from 'virtual:icons/mdi/close.svg'
-  import BuildInfo from '../routes/keyboards/build-info.svelte'
+  import {BuildInfo} from './components'
   let {activeKeyboard} = $props()
 </script>
 

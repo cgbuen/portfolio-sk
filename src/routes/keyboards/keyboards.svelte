@@ -1,10 +1,9 @@
 <script lang="ts">
   import {page} from '$app/state'
-  import {activeKeyboard} from '$lib/active-keyboard.svelte'
-  import FilterButton from '$lib/filter-button.svelte'
-  import {useDate} from '$lib/useDate'
+  import {activeKeyboard} from '$lib/state/active-keyboard.svelte'
+  import {FilterButton, GridSquare} from './components'
+  import {useDate} from '$lib/helpers/useDate'
   import type {Keyboard} from '../api/keyboards/+server'
-  import GridSquare from './grid-square.svelte'
   import GridIcon from 'virtual:icons/mdi/view-grid-outline'
   import ListIcon from 'virtual:icons/mdi/view-list'
   import KeyboardsList from './keyboards-list.svelte'

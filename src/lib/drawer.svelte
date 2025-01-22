@@ -26,7 +26,7 @@
       out:fade={{duration: 150}}
     ></button>
   {/if}
-  <div class="drawer bg-neutral-900 {open ? 'open' : ''}">
+  <div class="drawer-variant bg-neutral-900 {open ? 'open' : ''}">
     {#each items as item}
       <a
         class="item {page.url.toString().includes(item.href) && !item.blank
@@ -52,7 +52,7 @@
     top: 0;
     width: 100%;
   }
-  .drawer {
+  .drawer-variant {
     height: 100%;
     left: -300px;
     padding-top: 64px;
@@ -61,7 +61,7 @@
     transition: left 0.15s ease-in-out;
     width: 300px;
   }
-  .drawer.open {
+  .drawer-variant.open {
     left: 0;
   }
   .item {

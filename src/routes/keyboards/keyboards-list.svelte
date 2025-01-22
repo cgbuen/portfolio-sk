@@ -1,6 +1,6 @@
 <script>
-  import ModalTd from './modal-td.svelte'
-  import {useDate} from '$lib/useDate'
+  import {ModalTd} from './components'
+  import {useDate} from '$lib/helpers/useDate'
   const {displayedList, openDialog} = $props()
 </script>
 

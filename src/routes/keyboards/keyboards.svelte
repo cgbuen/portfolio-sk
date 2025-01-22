@@ -4,12 +4,9 @@
   import type {Keyboard} from '../api/keyboards/+server'
   import GridSquare from './grid-square.svelte'
 
-  const built = page.data.collection.keyboards.built
-  const unbuilt = page.data.collection.keyboards.unbuilt
-  const onTheWay = page.data.collection.keyboards.onTheWay
-  const forSale = page.data.collection.keyboards.forSale
-  const displayedList = $state(built)
-  let modal: HTMLDialogElement
+  const {keyboards} = page.data.collection
+  let filters: {[key: string]: boolean} = {built: true, unbuilt: false, onTheWay: false, forSale: false}
+  let displayedList = $state(keyboards.built)
 
   const openDialog = (buildSet: Keyboard[]) => {
     return () => {
@@ -17,10 +14,30 @@
       activeKeyboard.buildActive = 0
     }
   }
+  
+  const updateFilter = (filter: string) => {
+    return () => {
+      filters[filter] = !filters[filter]
+      displayedList = Object.keys(filters)
+        .filter(key => filters[key])
+        .reduce(
+          (acc, key) => acc.concat(keyboards[key]), []
+        )
+    }
+  }
 </script>
 
 <div>
   <div class="top-section">
+    <div class="filter-section-wrapper">
+      <div class="filter-label">Filters</div>
+      <div class="filter-section">
+        <button class="filter-label" onclick={updateFilter('built')}>Built</button>
+        <button class="filter-label" onclick={updateFilter('unbuilt')}>Unbuilt</button>
+        <button class="filter-label" onclick={updateFilter('onTheWay')}>On the way</button>
+        <button class="filter-label" onclick={updateFilter('forSale')}>For sale</button>  
+      </div>
+    </div>
     <div class="results-count">{displayedList.length} results</div>
   </div>
   <div class="content-container">

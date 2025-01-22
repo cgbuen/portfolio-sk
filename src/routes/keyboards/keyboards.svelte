@@ -5,8 +5,12 @@
   import {useDate} from '$lib/useDate'
   import type {Keyboard} from '../api/keyboards/+server'
   import GridSquare from './grid-square.svelte'
+  import GridIcon from 'virtual:icons/mdi/view-grid-outline'
+  import ListIcon from 'virtual:icons/mdi/view-list'
+  import ModalTd from './modal-td.svelte'
 
   const {keyboards} = page.data.collection
+  let viewOption = $state(true)
   let filters: {[key: string]: boolean} = $state({
     built: true,
     unbuilt: false,
@@ -34,6 +38,12 @@
       filters[filter] = !filters[filter]
     }
   }
+
+  const toggleView = (option: boolean) => {
+    return () => {
+      viewOption = option
+    }
+  }
 </script>
 
 <div>
@@ -51,19 +61,81 @@
         {/each}
       </div>
     </div>
+    <div class="view-options">
+      <button
+        class="view-option"
+        aria-label="Grid view"
+        onclick={toggleView(true)}
+      >
+        <GridIcon />
+      </button>
+      <button
+        class="view-option"
+        aria-label="List view"
+        onclick={toggleView(false)}
+      >
+        <ListIcon />
+      </button>
+    </div>
     <div class="results-count">{displayedList.length} results</div>
   </div>
   <div class="content-container">
-    {#each displayedList as buildSet}
-      <GridSquare
-        onclick={openDialog(buildSet)}
-        src={buildSet[0].src}
-        name={buildSet[0].name}
-        description="{useDate(buildSet).label} {useDate(buildSet).value}"
-      />
-    {/each}
-    {#if displayedList.length % 3 === 2}
-      <div style="width: 280px;"></div>
+    {#if viewOption}
+      {#each displayedList as buildSet}
+        <GridSquare
+          onclick={openDialog(buildSet)}
+          src={buildSet[0].src}
+          name={buildSet[0].name}
+          description="{useDate(buildSet).label} {useDate(buildSet).value}"
+        />
+      {/each}
+      {#if displayedList.length % 3 === 2}
+        <div style="width: 280px;"></div>
+      {/if}
+    {:else}
+      <table class="img-table table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Builds</th>
+            <th>Last built</th>
+            <th>Plate</th>
+            <th>Switches</th>
+            <th>Keycaps</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each displayedList as buildSet}
+            <tr class="list-build" onclick={openDialog(buildSet)}>
+              <ModalTd labelFor="keyboard-modal" hasImg={true}>
+                <img
+                  src={buildSet[0].src}
+                  alt={buildSet[0].name}
+                  width="100"
+                  height="6649"
+                />
+              </ModalTd>
+              <ModalTd labelFor="keyboard-modal">{buildSet[0].name}</ModalTd>
+              <ModalTd labelFor="keyboard-modal" style="text-align: center">
+                {buildSet[0].type}
+              </ModalTd>
+              <ModalTd labelFor="keyboard-modal" style="text-align: center">
+                {buildSet.length}
+              </ModalTd>
+              <ModalTd labelFor="keyboard-modal" style="white-space: nowrap">
+                {useDate(buildSet).value}
+              </ModalTd>
+              <ModalTd labelFor="keyboard-modal">{buildSet[0].plate}</ModalTd>
+              <ModalTd labelFor="keyboard-modal">
+                {buildSet[0].switches}
+              </ModalTd>
+              <ModalTd labelFor="keyboard-modal">{buildSet[0].keycaps}</ModalTd>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
     {/if}
     {#if displayedList.length === 0}
       <div class="">Select a filter above to see results.</div>

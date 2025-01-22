@@ -4,7 +4,7 @@
 </script>
 
 <div>
-  <table class="table">
+  <table class="img-table table">
     <thead>
       <tr>
         <td></td>
@@ -45,11 +45,6 @@
 
 <style>
   .table tbody td {
-    &:first-child {
-      white-space: normal;
-      padding: 10px 0;
-      width: 100px;
-    }
     &:nth-child(3) {
       white-space: nowrap;
     }

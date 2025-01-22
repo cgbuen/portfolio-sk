@@ -1,6 +1,6 @@
 <script>
   import {page} from '$app/state'
-  import ModalTd from './components/modal-td.svelte'
+  import ModalTd from './components/clickable-td.svelte'
   const legendQuality = [, 'Low', 'Acceptable', 'High']
 </script>
 

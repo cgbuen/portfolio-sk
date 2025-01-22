@@ -1,7 +1,7 @@
 <script>
   import {page} from '$app/state'
   import {PUBLIC_ASSET} from '$env/static/public'
-  import ModalTd from './components/modal-td.svelte'
+  import ModalTd from './components/clickable-td.svelte'
   const EXCLUDE_WEIGHT = [
     'springswap',
     'alps',

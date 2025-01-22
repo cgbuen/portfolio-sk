@@ -7,10 +7,10 @@
   import GridSquare from './grid-square.svelte'
   import GridIcon from 'virtual:icons/mdi/view-grid-outline'
   import ListIcon from 'virtual:icons/mdi/view-list'
-  import ModalTd from './modal-td.svelte'
+  import KeyboardsList from './keyboards-list.svelte'
 
   const {keyboards} = page.data.collection
-  let viewOption = $state(true)
+  let gridView = $state(true)
   let filters: {[key: string]: boolean} = $state({
     built: true,
     unbuilt: false,
@@ -39,9 +39,9 @@
     }
   }
 
-  const toggleView = (option: boolean) => {
+  const toggleGridView = (option: boolean) => {
     return () => {
-      viewOption = option
+      gridView = option
     }
   }
 </script>
@@ -49,7 +49,7 @@
 <div>
   <div class="top-section">
     <div class="filter-section-wrapper">
-      <div class="filter-label">Filters</div>
+      <div class="filter-label">Filters:</div>
       <div class="filter-section">
         {#each ['built', 'unbuilt', 'onTheWay', 'forSale'] as filter}
           <FilterButton
@@ -61,26 +61,24 @@
         {/each}
       </div>
     </div>
+    <div class="results-count">{displayedList.length} results</div>
     <div class="view-options">
       <button
-        class="view-option"
-        aria-label="Grid view"
-        onclick={toggleView(true)}
+        class="view-option {gridView ? 'active' : ''}"
+        onclick={toggleGridView(true)}
       >
         <GridIcon />
       </button>
       <button
-        class="view-option"
-        aria-label="List view"
-        onclick={toggleView(false)}
+        class="view-option {gridView ? '' : 'active'}"
+        onclick={toggleGridView(false)}
       >
         <ListIcon />
       </button>
     </div>
-    <div class="results-count">{displayedList.length} results</div>
   </div>
   <div class="content-container">
-    {#if viewOption}
+    {#if gridView}
       {#each displayedList as buildSet}
         <GridSquare
           onclick={openDialog(buildSet)}
@@ -92,50 +90,8 @@
       {#if displayedList.length % 3 === 2}
         <div style="width: 280px;"></div>
       {/if}
-    {:else}
-      <table class="img-table table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Builds</th>
-            <th>Last built</th>
-            <th>Plate</th>
-            <th>Switches</th>
-            <th>Keycaps</th>
-          </tr>
-        </thead>
-        <tbody>
-          {#each displayedList as buildSet}
-            <tr class="list-build" onclick={openDialog(buildSet)}>
-              <ModalTd labelFor="keyboard-modal" hasImg={true}>
-                <img
-                  src={buildSet[0].src}
-                  alt={buildSet[0].name}
-                  width="100"
-                  height="6649"
-                />
-              </ModalTd>
-              <ModalTd labelFor="keyboard-modal">{buildSet[0].name}</ModalTd>
-              <ModalTd labelFor="keyboard-modal" style="text-align: center">
-                {buildSet[0].type}
-              </ModalTd>
-              <ModalTd labelFor="keyboard-modal" style="text-align: center">
-                {buildSet.length}
-              </ModalTd>
-              <ModalTd labelFor="keyboard-modal" style="white-space: nowrap">
-                {useDate(buildSet).value}
-              </ModalTd>
-              <ModalTd labelFor="keyboard-modal">{buildSet[0].plate}</ModalTd>
-              <ModalTd labelFor="keyboard-modal">
-                {buildSet[0].switches}
-              </ModalTd>
-              <ModalTd labelFor="keyboard-modal">{buildSet[0].keycaps}</ModalTd>
-            </tr>
-          {/each}
-        </tbody>
-      </table>
+    {:else if displayedList.length > 0}
+      <KeyboardsList {displayedList} {openDialog} />
     {/if}
     {#if displayedList.length === 0}
       <div class="">Select a filter above to see results.</div>
@@ -144,6 +100,12 @@
 </div>
 
 <style>
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
   .content-container {
     display: flex;
     flex-wrap: wrap;
@@ -152,17 +114,30 @@
   .results-count {
     font-size: 18px;
     font-weight: bold;
-    padding-bottom: 15px;
     text-align: right;
     white-space: nowrap;
+    flex: 1;
+    justify-content: end;
+    margin-right: 10px;
+  }
+  .view-options {
+    display: flex;
+  }
+  .view-option {
+    display: block;
+    height: 24px;
+    opacity: 0.25;
+    width: 24px;
+    &.active {
+      opacity: 1;
+    }
   }
   .filter-section-wrapper {
     display: flex;
-    margin-bottom: 10px;
   }
   .filter-label {
     display: inline-block;
     font-weight: bold;
-    margin: 6px 15px 0 0;
+    margin-top: 6px;
   }
 </style>

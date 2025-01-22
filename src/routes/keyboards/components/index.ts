@@ -1,6 +1,7 @@
 import BuildInfo from './build-info.svelte'
+import ClickableTd from './clickable-td.svelte'
 import FilterButton from './filter-button.svelte'
 import GridSquare from './grid-square.svelte'
-import ModalTd from './clickable-td.svelte'
+import TopSection from './top-section.svelte'
 
-export {BuildInfo, FilterButton, GridSquare, ModalTd}
+export {BuildInfo, ClickableTd, FilterButton, GridSquare, TopSection}

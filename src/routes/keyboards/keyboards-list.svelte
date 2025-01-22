@@ -1,5 +1,5 @@
 <script>
-  import {ModalTd} from './components'
+  import {ClickableTd} from './components'
   import {useDate} from '$lib/helpers/useDate'
   const {displayedList, openDialog} = $props()
 </script>
@@ -20,29 +20,31 @@
   <tbody>
     {#each displayedList as buildSet}
       <tr class="list-build" onclick={openDialog(buildSet)}>
-        <ModalTd labelFor="keyboard-modal" hasImg={true}>
+        <ClickableTd labelFor="keyboard-modal" hasImg={true}>
           <img
             src={buildSet[0].src}
             alt={buildSet[0].name}
             width="100"
             height="66.49"
           />
-        </ModalTd>
-        <ModalTd labelFor="keyboard-modal">{buildSet[0].name}</ModalTd>
-        <ModalTd labelFor="keyboard-modal" style="text-align: center">
+        </ClickableTd>
+        <ClickableTd labelFor="keyboard-modal">{buildSet[0].name}</ClickableTd>
+        <ClickableTd labelFor="keyboard-modal" style="text-align: center">
           {buildSet[0].type}
-        </ModalTd>
-        <ModalTd labelFor="keyboard-modal" style="text-align: center">
+        </ClickableTd>
+        <ClickableTd labelFor="keyboard-modal" style="text-align: center">
           {buildSet.length}
-        </ModalTd>
-        <ModalTd labelFor="keyboard-modal" style="white-space: nowrap">
+        </ClickableTd>
+        <ClickableTd labelFor="keyboard-modal" style="white-space: nowrap">
           {useDate(buildSet).value}
-        </ModalTd>
-        <ModalTd labelFor="keyboard-modal">{buildSet[0].plate}</ModalTd>
-        <ModalTd labelFor="keyboard-modal">
+        </ClickableTd>
+        <ClickableTd labelFor="keyboard-modal">{buildSet[0].plate}</ClickableTd>
+        <ClickableTd labelFor="keyboard-modal">
           {buildSet[0].switches}
-        </ModalTd>
-        <ModalTd labelFor="keyboard-modal">{buildSet[0].keycaps}</ModalTd>
+        </ClickableTd>
+        <ClickableTd labelFor="keyboard-modal"
+          >{buildSet[0].keycaps}</ClickableTd
+        >
       </tr>
     {/each}
   </tbody>

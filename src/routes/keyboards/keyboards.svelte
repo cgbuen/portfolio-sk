@@ -49,11 +49,11 @@
     {displayedList}
     {filters}
     {gridView}
-    {keyboards}
+    data={keyboards}
     {toggleGridView}
     {updateFilter}
   />
-  <div class="content-container">
+  <div class="grid-container">
     {#if gridView}
       {#each displayedList as buildSet}
         <GridSquare
@@ -76,9 +76,4 @@
 </div>
 
 <style>
-  .content-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
 </style>

@@ -1,55 +1,71 @@
-<script>
+<script lang="ts">
   import {page} from '$app/state'
-  import ModalTd from './components/clickable-td.svelte'
-  const legendQuality = [, 'Low', 'Acceptable', 'High']
+  import type {Keyset} from '../api/keyboards/+server'
+  import KeysetsList from './keysets-list.svelte'
+  import {GridSquare, TopSection} from './components'
+
+  const {keysets} = page.data.collection
+  let gridView = $state(false)
+  let filters: {[key: string]: boolean} = $state({
+    mounted: true,
+    unused: true,
+    onTheWay: true,
+  })
+  let displayedList: Keyset[] = $derived(
+    Object.keys(filters)
+      .filter((key) => filters[key])
+      .reduce((acc, key) => acc.concat(keysets[key]), [])
+      .toSorted((x: Keyset, y: Keyset) => {
+        return y.purchase_date.localeCompare(x.purchase_date)
+      }),
+  )
+
+  const openDialog = () => {
+    return () => {}
+  }
+
+  const updateFilter = (filter: string) => {
+    return () => {
+      filters[filter] = !filters[filter]
+    }
+  }
+
+  const toggleGridView = (option: boolean) => {
+    return () => {
+      gridView = option
+    }
+  }
 </script>
 
 <div>
-  <table class="img-table table">
-    <thead>
-      <tr>
-        <th></th>
-        <th class="text-neutral-900 dark:text-white">Name</th>
-        <th class="text-neutral-900 dark:text-white">Date</th>
-        <th class="text-neutral-900 dark:text-white">Type</th>
-        <th class="text-neutral-900 dark:text-white">Status</th>
-        <th class="text-neutral-900 dark:text-white">Keyboard</th>
-        <th class="text-neutral-900 dark:text-white">6UC</th>
-        <th class="text-neutral-900 dark:text-white">6UO</th>
-        <th class="text-neutral-900 dark:text-white">Quality</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each page.data.collection.keysets as keyset}
-        <tr>
-          <ModalTd labelFor="keyset-modal">
-            <img
-              src={keyset.src}
-              alt={keyset.keyset}
-              width="100"
-              height="66.49"
-            />
-          </ModalTd>
-          <ModalTd labelFor="keyset-modal">{keyset.keyset}</ModalTd>
-          <ModalTd labelFor="keyset-modal" style="white-space: nowrap">
-            {keyset.purchase_date}
-          </ModalTd>
-          <ModalTd labelFor="keyset-modal">{keyset.mount}</ModalTd>
-          <ModalTd labelFor="keyset-modal">{keyset.mount_status}</ModalTd>
-          <ModalTd labelFor="keyset-modal">{keyset.keyboard}</ModalTd>
-          <ModalTd labelFor="keyset-modal" style="text-align: center">
-            {keyset.u6_center}
-          </ModalTd>
-          <ModalTd labelFor="keyset-modal" style="text-align: center">
-            {keyset.u6_off}
-          </ModalTd>
-          <ModalTd labelFor="keyset-modal" style="text-align: center">
-            {legendQuality[keyset.lq]}
-          </ModalTd>
-        </tr>
+  <TopSection
+    {displayedList}
+    {filters}
+    {gridView}
+    data={keysets}
+    {toggleGridView}
+    {updateFilter}
+  />
+  <div class="grid-container">
+    {#if gridView}
+      {#each displayedList as keyset}
+        <GridSquare
+          onclick={openDialog()}
+          src={keyset.src}
+          name={keyset.keyset}
+          description="Purchased: {keyset.purchase_date}"
+        />
       {/each}
-    </tbody>
-  </table>
+      {#if displayedList.length % 3 === 2}
+        <div style="width: 280px;"></div>
+      {/if}
+    {:else if displayedList.length > 0}
+      <KeysetsList {displayedList} />
+    {/if}
+    {#if displayedList.length === 0}
+      <div class="">Select a filter above to see results.</div>
+    {/if}
+  </div>
 </div>
 
 <style>

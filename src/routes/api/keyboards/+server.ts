@@ -18,7 +18,7 @@ export interface Keyboard {
 
 export interface Keyset {
   src: string
-  name: string
+  keyset: string
   mount_status: string
   purchase_date: string
 }
@@ -32,7 +32,7 @@ export interface Switchset {
 
 const NOT_YET_BUILT = ['TBD', 'N/A']
 
-export async function GET({url}) {
+export async function GET() {
   const requests = []
   requests.push(fetch(`${PUBLIC_ASSET}/keyboards/collection.json`))
   requests.push(fetch(`${PUBLIC_ASSET}/keyboards/keysets.json`))
@@ -99,7 +99,7 @@ export async function GET({url}) {
   }
 
   const keysetsResponse = await responses[1].json()
-  let keysets = keysetsResponse
+  const keysetsArray = keysetsResponse
     .filter((keyset: Keyset) =>
       ['Mounted', 'Unused'].includes(keyset.mount_status),
     )
@@ -111,9 +111,20 @@ export async function GET({url}) {
       return x.purchase_date.localeCompare(y.purchase_date)
     })
     .reverse()
+  const keysets = {
+    mounted: keysetsArray.filter(
+      (keyset: Keyset) => keyset.mount_status === 'Mounted',
+    ),
+    unused: keysetsArray.filter(
+      (keyset: Keyset) => keyset.mount_status === 'Unused',
+    ),
+    onTheWay: keysetsArray.filter(
+      (keyset: Keyset) => keyset.mount_status === 'On the way',
+    ),
+  }
 
   const switchesResponse = await responses[2].json()
-  let switches = switchesResponse
+  const switchesArray = switchesResponse
     .filter((switchset: Switchset) =>
       ['Tune', 'Ready', 'Mounted', 'Re-tune'].includes(switchset.mount_status),
     )
@@ -121,26 +132,21 @@ export async function GET({url}) {
       return x.purchase_date.localeCompare(y.purchase_date)
     })
     .reverse()
+  const switches = {
+    mounted: switchesArray.filter(
+      (switchset: Switchset) => switchset.mount_status === 'Mounted',
+    ),
+    ready: switchesArray.filter(
+      (switchset: Switchset) => switchset.mount_status === 'Ready',
+    ),
+    tune: switchesArray.filter((switchset: Switchset) =>
+      ['Tune', 'Re-tune', 'In progress'].includes(switchset.mount_status),
+    ),
+  }
 
   const dates = responses.map((x) =>
     new Date(x.headers.get('Last-Modified') ?? 0).valueOf(),
   )
-
-  if (url.searchParams.get('keyset_mount_status') === 'unused') {
-    keysets = [...keysets].reverse().sort((x) => {
-      return x.mount_status === 'Unused' ? -1 : 1
-    })
-  }
-  if (url.searchParams.get('switch_mount_status') === 'ready') {
-    switches = [...switches].reverse().sort((x) => {
-      return x.mount_status === 'Ready' ? -1 : 1
-    })
-  }
-  if (url.searchParams.get('switch_mount_status') === 'tunable') {
-    switches = [...switches].reverse().sort((x) => {
-      return ['Tune', 'Re-tune'].includes(x.mount_status) ? -1 : 1
-    })
-  }
 
   const response = {
     keyboards,

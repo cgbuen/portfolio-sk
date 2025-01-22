@@ -3,14 +3,8 @@
   import GridIcon from 'virtual:icons/mdi/view-grid-outline'
   import ListIcon from 'virtual:icons/mdi/view-list'
 
-  let {
-    displayedList,
-    filters,
-    gridView,
-    keyboards,
-    toggleGridView,
-    updateFilter,
-  } = $props()
+  let {displayedList, filters, gridView, data, toggleGridView, updateFilter} =
+    $props()
 </script>
 
 <div class="top-section">
@@ -18,12 +12,14 @@
     <div class="filter-label">Filters:</div>
     <div class="filter-section">
       {#each Object.keys(filters) as filter}
-        <FilterButton
-          name={filter}
-          count={keyboards[filter].length}
-          active={filters[filter]}
-          onclick={updateFilter(filter)}
-        />
+        {#if data[filter].length > 0}
+          <FilterButton
+            name={filter}
+            count={data[filter].length}
+            active={filters[filter]}
+            onclick={updateFilter(filter)}
+          />
+        {/if}
       {/each}
     </div>
   </div>

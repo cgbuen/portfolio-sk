@@ -19,6 +19,9 @@
     stream my build process to <a href={PUBLIC_TWITCH} target="_blank">Twitch</a
     >.
   </p>
+  <p>
+    For more information on items that are for sale, DM me on Discord ({PUBLIC_DISCORD_P}).
+  </p>
   <p><i>Last updated: {page.data.collection.date} GMT</i></p>
 
   <div role="tablist" class="tabs">

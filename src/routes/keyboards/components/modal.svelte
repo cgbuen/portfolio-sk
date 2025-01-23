@@ -2,6 +2,7 @@
   import CloseIcon from 'virtual:icons/mdi/close.svg'
   import BuildInfo from './build-info.svelte'
   let {activeKeyboard} = $props()
+  console.log(activeKeyboard)
 </script>
 
 <div>
@@ -11,7 +12,7 @@
       <label class="close" for="keyboard-modal"><CloseIcon /></label>
       <h2>{activeKeyboard.keyboard[0]?.name}</h2>
       <div class="modal-content-container">
-        {#if activeKeyboard.length === 1}
+        {#if activeKeyboard.keyboard.length === 1}
           <div class="single">
             <BuildInfo build={activeKeyboard.keyboard[0]} />
           </div>

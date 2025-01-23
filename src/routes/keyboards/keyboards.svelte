@@ -10,13 +10,13 @@
 
   const {keyboards} = page.data.collection
   let gridView = $state(true)
+  let search = $state('')
   let filters: {[key: string]: boolean} = $state({
     built: true,
     unbuilt: false,
     onTheWay: false,
     forSale: false,
   })
-  let search = $state('')
   let displayedList: Keyboard[][] = $derived(
     Object.keys(filters)
       .filter((key) => filters[key])
@@ -31,10 +31,11 @@
       }),
   )
 
-  const openDialog = (buildSet: Keyboard[]) => {
+  const openDialog = (buildSet: Keyboard[], i: number) => {
     return () => {
       activeKeyboard.keyboard = buildSet
       activeKeyboard.buildActive = 0
+      activeKeyboard.indexInDisplayedList = i
     }
   }
 
@@ -54,7 +55,44 @@
       gridView = option
     }
   }
+
+  const onKeyUp = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      const modalCheckbox = document.getElementById(
+        'keyboard-modal',
+      ) as HTMLInputElement
+      if (modalCheckbox) {
+        modalCheckbox.checked = false
+      }
+    } else if (e.key === 'ArrowUp') {
+      activeKeyboard.buildActive -= 1
+      if (activeKeyboard.buildActive < 0) {
+        activeKeyboard.buildActive = activeKeyboard.keyboard.length - 1
+      }
+    } else if (e.key === 'ArrowDown') {
+      activeKeyboard.buildActive += 1
+      if (activeKeyboard.buildActive >= activeKeyboard.keyboard.length) {
+        activeKeyboard.buildActive = 0
+      }
+    } else if (e.key === 'ArrowLeft') {
+      const newIndex =
+        (activeKeyboard.indexInDisplayedList + displayedList.length - 1) %
+        displayedList.length
+      console.log(newIndex)
+      activeKeyboard.keyboard = displayedList[newIndex]
+      activeKeyboard.indexInDisplayedList = newIndex
+      activeKeyboard.buildActive = 0
+    } else if (e.key === 'ArrowRight') {
+      const newIndex =
+        (activeKeyboard.indexInDisplayedList + 1) % displayedList.length
+      activeKeyboard.keyboard = displayedList[newIndex]
+      activeKeyboard.indexInDisplayedList = newIndex
+      activeKeyboard.buildActive = 0
+    }
+  }
 </script>
+
+<svelte:window on:keyup|preventDefault={onKeyUp} />
 
 <div>
   <TopSection
@@ -68,9 +106,9 @@
   />
   <div class="grid-container">
     {#if gridView}
-      {#each displayedList as buildSet}
+      {#each displayedList as buildSet, i}
         <GridSquare
-          onclick={openDialog(buildSet)}
+          onclick={openDialog(buildSet, i)}
           src={buildSet[0].src}
           name={buildSet[0].name}
           description="{useDate(buildSet).label} {useDate(buildSet).value}"

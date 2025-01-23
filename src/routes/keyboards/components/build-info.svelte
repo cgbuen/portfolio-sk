@@ -70,5 +70,6 @@
 <style>
   ul {
     padding: 0;
+    margin-bottom: 0;
   }
 </style>

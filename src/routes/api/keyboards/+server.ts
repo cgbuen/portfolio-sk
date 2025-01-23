@@ -21,6 +21,7 @@ export interface Keyset {
   keyset: string
   mount_status: string
   purchase_date: string
+  keyboard: string
 }
 
 export interface Switchset {
@@ -28,6 +29,7 @@ export interface Switchset {
   name: string
   mount_status: string
   purchase_date: string
+  keyboard: string
 }
 
 const NOT_YET_BUILT = ['TBD', 'N/A']

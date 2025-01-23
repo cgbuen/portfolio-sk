@@ -1,9 +1,10 @@
 <script lang="ts">
   import {debounce} from 'ts-debounce'
   import {page} from '$app/state'
-  import type {Keyset} from '../api/keyboards/+server'
-  import KeysetsList from './keysets-list.svelte'
+  import {activeKeyset} from '$lib/state'
   import {GridSquare, TopSection} from './components'
+  import type {Keyset} from '../api/keyboards/+server'
+  import KeysetsList from './components/keysets-list.svelte'
 
   const {keysets} = page.data.collection
   let gridView = $state(false)
@@ -28,8 +29,12 @@
       }),
   )
 
-  const openModal = () => {
-    return () => {}
+  const openModal = (keyset: Keyset, i: number) => {
+    return () => {
+      activeKeyset.keyset = keyset
+      activeKeyset.indexInDisplayedList = i
+      console.log(keyset, i)
+    }
   }
 
   const updateFilter = (filter: string) => {
@@ -48,7 +53,33 @@
       gridView = option
     }
   }
+
+  const onKeyUp = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      const modalCheckbox = document.getElementById(
+        'keysets-modal',
+      ) as HTMLInputElement
+      if (modalCheckbox) {
+        modalCheckbox.checked = false
+      }
+    } else if (e.key === 'ArrowLeft') {
+      const newIndex =
+        (activeKeyset.indexInDisplayedList + displayedList.length - 1) %
+        displayedList.length
+      console.log(activeKeyset.indexInDisplayedList, displayedList.length)
+      activeKeyset.keyset = displayedList[newIndex]
+      activeKeyset.indexInDisplayedList = newIndex
+    } else if (e.key === 'ArrowRight') {
+      const newIndex =
+        (activeKeyset.indexInDisplayedList + 1) % displayedList.length
+      console.log(newIndex)
+      activeKeyset.keyset = displayedList[newIndex]
+      activeKeyset.indexInDisplayedList = newIndex
+    }
+  }
 </script>
+
+<svelte:window on:keyup|preventDefault={onKeyUp} />
 
 <div>
   <TopSection
@@ -62,20 +93,20 @@
   />
   <div class="grid-container">
     {#if gridView}
-      {#each displayedList as keyset}
+      {#each displayedList as keyset, i}
         <GridSquare
-          onclick={openModal()}
+          onclick={openModal(keyset, i)}
           src={keyset.src}
           name={keyset.keyset}
           description="Purchased: {keyset.purchase_date}"
-          labelFor="keyset-modal"
+          labelFor="keysets-modal"
         />
       {/each}
       {#if displayedList.length % 3 === 2}
         <div style="width: 280px;"></div>
       {/if}
     {:else if displayedList.length > 0}
-      <KeysetsList {displayedList} />
+      <KeysetsList {displayedList} {openModal} />
     {/if}
     {#if displayedList.length === 0}
       <div class="">Select a filter above to see results.</div>

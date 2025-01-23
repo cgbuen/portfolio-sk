@@ -3,8 +3,10 @@
   import {ColorSchemePicker, Drawer, Header, Footer} from '$lib/components'
   import {page} from '$app/state'
   import {setContext} from 'svelte'
-  import Modal from './keyboards/components/modal.svelte'
-  import {activeKeyboard} from '$lib/state/active-keyboard.svelte'
+  import KeyboardsModal from './keyboards/components/keyboards-modal.svelte'
+  import KeysetsModal from './keyboards/components/keysets-modal.svelte'
+  import SwitchesModal from './keyboards/components/switches-modal.svelte'
+  import {activeKeyboard, activeKeyset, activeSwitchset} from '$lib/state'
   setContext('titleSuffix', ' — cgbuen')
   setContext('items', [
     {name: 'Software', href: '/software'},
@@ -32,7 +34,9 @@
   <Footer />
   <ColorSchemePicker />
   <Drawer open={menuOpen} {toggleOpen} />
-  <Modal {activeKeyboard} />
+  <KeyboardsModal {activeKeyboard} />
+  <KeysetsModal {activeKeyset} />
+  <SwitchesModal {activeSwitchset} />
 </div>
 
 <style>

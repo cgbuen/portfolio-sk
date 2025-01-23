@@ -1,4 +1,4 @@
-import BuildInfo from './build-info.svelte'
+import BuildInfo from './keyboards-build-info.svelte'
 import ClickableTd from './clickable-td.svelte'
 import FilterButton from './filter-button.svelte'
 import GridSquare from './grid-square.svelte'

@@ -1,14 +1,14 @@
 <script lang="ts">
   import CloseIcon from 'virtual:icons/mdi/close.svg'
-  import BuildInfo from './build-info.svelte'
+  import BuildInfo from './keyboards-build-info.svelte'
   let {activeKeyboard} = $props()
 </script>
 
 <div>
-  <input type="checkbox" id="keyboard-modal" class="modal-toggle" />
+  <input type="checkbox" id="keyboards-modal" class="modal-toggle" />
   <div class="modal" role="dialog">
     <div class="modal-box max-w-6xl bg-teal-50 dark:bg-neutral-900">
-      <label class="close" for="keyboard-modal"><CloseIcon /></label>
+      <label class="close" for="keyboards-modal"><CloseIcon /></label>
       <h2>{activeKeyboard.keyboard[0]?.name}</h2>
       <div class="modal-content-container">
         {#if activeKeyboard.keyboard.length === 1}

@@ -1,12 +1,11 @@
 <script lang="ts">
   import {debounce} from 'ts-debounce'
   import {page} from '$app/state'
-  import {activeKeyboard} from '$lib/state/active-keyboard.svelte'
-  import {GridSquare} from './components'
+  import {activeKeyboard} from '$lib/state'
+  import {GridSquare, TopSection} from './components'
   import {useDate} from '$lib/helpers/useDate'
   import type {Keyboard} from '../api/keyboards/+server'
-  import KeyboardsList from './keyboards-list.svelte'
-  import TopSection from './components/top-section.svelte'
+  import KeyboardsList from './components/keyboards-list.svelte'
 
   const {keyboards} = page.data.collection
   let gridView = $state(true)
@@ -59,7 +58,7 @@
   const onKeyUp = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       const modalCheckbox = document.getElementById(
-        'keyboard-modal',
+        'keyboards-modal',
       ) as HTMLInputElement
       if (modalCheckbox) {
         modalCheckbox.checked = false
@@ -111,7 +110,7 @@
           src={buildSet[0].src}
           name={buildSet[0].name}
           description="{useDate(buildSet).label} {useDate(buildSet).value}"
-          labelFor="keyboard-modal"
+          labelFor="keyboards-modal"
         />
       {/each}
       {#if displayedList.length % 3 === 2}

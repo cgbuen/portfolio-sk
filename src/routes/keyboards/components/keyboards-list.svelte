@@ -1,5 +1,5 @@
 <script>
-  import {ClickableTd} from './components'
+  import ClickableTd from './clickable-td.svelte'
   import {useDate} from '$lib/helpers/useDate'
   const {displayedList, openModal} = $props()
 </script>
@@ -18,9 +18,9 @@
     </tr>
   </thead>
   <tbody>
-    {#each displayedList as buildSet}
-      <tr class="list-build" onclick={openModal(buildSet)}>
-        <ClickableTd labelFor="keyboard-modal" hasImg={true}>
+    {#each displayedList as buildSet, i}
+      <tr class="list-build" onclick={openModal(buildSet, i)}>
+        <ClickableTd labelFor="keyboards-modal" hasImg={true}>
           <img
             src={buildSet[0].src}
             alt={buildSet[0].name}
@@ -28,21 +28,22 @@
             height="66.49"
           />
         </ClickableTd>
-        <ClickableTd labelFor="keyboard-modal">{buildSet[0].name}</ClickableTd>
-        <ClickableTd labelFor="keyboard-modal" style="text-align: center">
+        <ClickableTd labelFor="keyboards-modal">{buildSet[0].name}</ClickableTd>
+        <ClickableTd labelFor="keyboards-modal" style="text-align: center">
           {buildSet[0].type}
         </ClickableTd>
-        <ClickableTd labelFor="keyboard-modal" style="text-align: center">
+        <ClickableTd labelFor="keyboards-modal" style="text-align: center">
           {buildSet.length}
         </ClickableTd>
-        <ClickableTd labelFor="keyboard-modal" style="white-space: nowrap">
+        <ClickableTd labelFor="keyboards-modal" style="white-space: nowrap">
           {useDate(buildSet).value}
         </ClickableTd>
-        <ClickableTd labelFor="keyboard-modal">{buildSet[0].plate}</ClickableTd>
-        <ClickableTd labelFor="keyboard-modal">
+        <ClickableTd labelFor="keyboards-modal">{buildSet[0].plate}</ClickableTd
+        >
+        <ClickableTd labelFor="keyboards-modal">
           {buildSet[0].switches}
         </ClickableTd>
-        <ClickableTd labelFor="keyboard-modal"
+        <ClickableTd labelFor="keyboards-modal"
           >{buildSet[0].keycaps}</ClickableTd
         >
       </tr>

@@ -1,6 +1,6 @@
 <script>
-  import {ClickableTd} from './components'
-  let {displayedList} = $props()
+  import ClickableTd from './clickable-td.svelte'
+  let {displayedList, openModal} = $props()
   const legendQuality = [, 'Low', 'Acceptable', 'High']
 </script>
 
@@ -19,9 +19,9 @@
     </tr>
   </thead>
   <tbody>
-    {#each displayedList as keyset}
-      <tr>
-        <ClickableTd labelFor="keyset-modal">
+    {#each displayedList as keyset, i}
+      <tr onclick={openModal(keyset, i)}>
+        <ClickableTd labelFor="keysets-modal">
           <img
             src={keyset.src}
             alt={keyset.keyset}
@@ -29,20 +29,21 @@
             height="66.49"
           />
         </ClickableTd>
-        <ClickableTd labelFor="keyset-modal">{keyset.keyset}</ClickableTd>
-        <ClickableTd labelFor="keyset-modal" style="white-space: nowrap">
+        <ClickableTd labelFor="keysets-modal">{keyset.keyset}</ClickableTd>
+        <ClickableTd labelFor="keysets-modal" style="white-space: nowrap">
           {keyset.purchase_date}
         </ClickableTd>
-        <ClickableTd labelFor="keyset-modal">{keyset.mount}</ClickableTd>
-        <ClickableTd labelFor="keyset-modal">{keyset.mount_status}</ClickableTd>
-        <ClickableTd labelFor="keyset-modal">{keyset.keyboard}</ClickableTd>
-        <ClickableTd labelFor="keyset-modal" style="text-align: center">
+        <ClickableTd labelFor="keysets-modal">{keyset.mount}</ClickableTd>
+        <ClickableTd labelFor="keysets-modal">{keyset.mount_status}</ClickableTd
+        >
+        <ClickableTd labelFor="keysets-modal">{keyset.keyboard}</ClickableTd>
+        <ClickableTd labelFor="keysets-modal" style="text-align: center">
           {keyset.u6_center}
         </ClickableTd>
-        <ClickableTd labelFor="keyset-modal" style="text-align: center">
+        <ClickableTd labelFor="keysets-modal" style="text-align: center">
           {keyset.u6_off}
         </ClickableTd>
-        <ClickableTd labelFor="keyset-modal" style="text-align: center">
+        <ClickableTd labelFor="keysets-modal" style="text-align: center">
           {legendQuality[keyset.lq]}
         </ClickableTd>
       </tr>

@@ -1,10 +1,11 @@
 <script lang="ts">
   import {debounce} from 'ts-debounce'
   import {page} from '$app/state'
-  import type {Switchset} from '../api/keyboards/+server'
+  import {activeSwitchset} from '$lib/state'
   import {GridSquare, TopSection} from './components'
+  import type {Switchset} from '../api/keyboards/+server'
+  import SwitchesList from './components/switches-list.svelte'
   import {PUBLIC_ASSET} from '$env/static/public'
-  import SwitchesList from './switches-list.svelte'
 
   const {switches} = page.data.collection
   let gridView = $state(false)
@@ -28,8 +29,11 @@
       }),
   )
 
-  const openModal = () => {
-    return () => {}
+  const openModal = (switchset: Switchset, i: number) => {
+    return () => {
+      activeSwitchset.switchset = switchset
+      activeSwitchset.indexInDisplayedList = i
+    }
   }
 
   const updateFilter = (filter: string) => {
@@ -48,7 +52,31 @@
       gridView = option
     }
   }
+
+  const onKeyUp = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      const modalCheckbox = document.getElementById(
+        'switches-modal',
+      ) as HTMLInputElement
+      if (modalCheckbox) {
+        modalCheckbox.checked = false
+      }
+    } else if (e.key === 'ArrowLeft') {
+      const newIndex =
+        (activeSwitchset.indexInDisplayedList + displayedList.length - 1) %
+        displayedList.length
+      activeSwitchset.switchset = displayedList[newIndex]
+      activeSwitchset.indexInDisplayedList = newIndex
+    } else if (e.key === 'ArrowRight') {
+      const newIndex =
+        (activeSwitchset.indexInDisplayedList + 1) % displayedList.length
+      activeSwitchset.switchset = displayedList[newIndex]
+      activeSwitchset.indexInDisplayedList = newIndex
+    }
+  }
 </script>
+
+<svelte:window on:keyup|preventDefault={onKeyUp} />
 
 <div>
   <TopSection
@@ -62,20 +90,20 @@
   />
   <div class="grid-container">
     {#if gridView}
-      {#each displayedList as switchset}
+      {#each displayedList as switchset, i}
         <GridSquare
-          onclick={openModal()}
+          onclick={openModal(switchset, i)}
           src="{PUBLIC_ASSET}/keyboards/unavailable.jpg"
           name={switchset.name}
           description="Purchased: {switchset.purchase_date}"
-          labelFor="switchset-modal"
+          labelFor="switches-modal"
         />
       {/each}
       {#if displayedList.length % 3 === 2}
         <div style="width: 280px;"></div>
       {/if}
     {:else if displayedList.length > 0}
-      <SwitchesList {displayedList} />
+      <SwitchesList {displayedList} {openModal} />
     {/if}
     {#if displayedList.length === 0}
       <div class="">Select a filter above to see results.</div>

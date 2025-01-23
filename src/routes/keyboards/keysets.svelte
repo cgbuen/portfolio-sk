@@ -33,7 +33,6 @@
     return () => {
       activeKeyset.keyset = keyset
       activeKeyset.indexInDisplayedList = i
-      console.log(keyset, i)
     }
   }
 
@@ -66,13 +65,11 @@
       const newIndex =
         (activeKeyset.indexInDisplayedList + displayedList.length - 1) %
         displayedList.length
-      console.log(activeKeyset.indexInDisplayedList, displayedList.length)
       activeKeyset.keyset = displayedList[newIndex]
       activeKeyset.indexInDisplayedList = newIndex
     } else if (e.key === 'ArrowRight') {
       const newIndex =
         (activeKeyset.indexInDisplayedList + 1) % displayedList.length
-      console.log(newIndex)
       activeKeyset.keyset = displayedList[newIndex]
       activeKeyset.indexInDisplayedList = newIndex
     }

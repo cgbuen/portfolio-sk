@@ -3,7 +3,7 @@
   import {ColorSchemePicker, Drawer, Header, Footer} from '$lib/components'
   import {page} from '$app/state'
   import {setContext} from 'svelte'
-  import KeyboardDialog from './keyboards/components/modal.svelte'
+  import Modal from './keyboards/components/modal.svelte'
   import {activeKeyboard} from '$lib/state/active-keyboard.svelte'
   setContext('titleSuffix', ' — cgbuen')
   setContext('items', [
@@ -32,7 +32,7 @@
   <Footer />
   <ColorSchemePicker />
   <Drawer open={menuOpen} {toggleOpen} />
-  <KeyboardDialog {activeKeyboard} />
+  <Modal {activeKeyboard} />
 </div>
 
 <style>

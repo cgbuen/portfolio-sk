@@ -31,7 +31,7 @@
       }),
   )
 
-  const openDialog = (buildSet: Keyboard[], i: number) => {
+  const openModal = (buildSet: Keyboard[], i: number) => {
     return () => {
       activeKeyboard.keyboard = buildSet
       activeKeyboard.buildActive = 0
@@ -78,7 +78,6 @@
       const newIndex =
         (activeKeyboard.indexInDisplayedList + displayedList.length - 1) %
         displayedList.length
-      console.log(newIndex)
       activeKeyboard.keyboard = displayedList[newIndex]
       activeKeyboard.indexInDisplayedList = newIndex
       activeKeyboard.buildActive = 0
@@ -108,7 +107,7 @@
     {#if gridView}
       {#each displayedList as buildSet, i}
         <GridSquare
-          onclick={openDialog(buildSet, i)}
+          onclick={openModal(buildSet, i)}
           src={buildSet[0].src}
           name={buildSet[0].name}
           description="{useDate(buildSet).label} {useDate(buildSet).value}"
@@ -119,7 +118,7 @@
         <div style="width: 280px;"></div>
       {/if}
     {:else if displayedList.length > 0}
-      <KeyboardsList {displayedList} {openDialog} />
+      <KeyboardsList {displayedList} {openModal} />
     {/if}
     {#if displayedList.length === 0}
       <div class="">Select a filter above to see results.</div>

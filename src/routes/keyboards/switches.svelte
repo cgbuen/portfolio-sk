@@ -8,12 +8,12 @@
 
   const {switches} = page.data.collection
   let gridView = $state(false)
+  let search = $state('')
   let filters: {[key: string]: boolean} = $state({
     mounted: true,
     ready: true,
     tune: true,
   })
-  let search = $state('')
   let displayedList: Switchset[] = $derived(
     Object.keys(filters)
       .filter((key) => filters[key])
@@ -28,7 +28,7 @@
       }),
   )
 
-  const openDialog = () => {
+  const openModal = () => {
     return () => {}
   }
 
@@ -64,7 +64,7 @@
     {#if gridView}
       {#each displayedList as switchset}
         <GridSquare
-          onclick={openDialog()}
+          onclick={openModal()}
           src="{PUBLIC_ASSET}/keyboards/unavailable.jpg"
           name={switchset.name}
           description="Purchased: {switchset.purchase_date}"

@@ -1,7 +1,7 @@
 <script>
   import {ClickableTd} from './components'
   import {useDate} from '$lib/helpers/useDate'
-  const {displayedList, openDialog} = $props()
+  const {displayedList, openModal} = $props()
 </script>
 
 <table class="img-table table">
@@ -19,7 +19,7 @@
   </thead>
   <tbody>
     {#each displayedList as buildSet}
-      <tr class="list-build" onclick={openDialog(buildSet)}>
+      <tr class="list-build" onclick={openModal(buildSet)}>
         <ClickableTd labelFor="keyboard-modal" hasImg={true}>
           <img
             src={buildSet[0].src}

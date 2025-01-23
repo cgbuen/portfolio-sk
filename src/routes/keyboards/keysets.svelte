@@ -7,13 +7,13 @@
 
   const {keysets} = page.data.collection
   let gridView = $state(false)
+  let search = $state('')
   let filters: {[key: string]: boolean} = $state({
     mounted: true,
     unused: true,
     onTheWay: true,
     forSale: true,
   })
-  let search = $state('')
   let displayedList: Keyset[] = $derived(
     Object.keys(filters)
       .filter((key) => filters[key])
@@ -28,7 +28,7 @@
       }),
   )
 
-  const openDialog = () => {
+  const openModal = () => {
     return () => {}
   }
 
@@ -64,7 +64,7 @@
     {#if gridView}
       {#each displayedList as keyset}
         <GridSquare
-          onclick={openDialog()}
+          onclick={openModal()}
           src={keyset.src}
           name={keyset.keyset}
           description="Purchased: {keyset.purchase_date}"

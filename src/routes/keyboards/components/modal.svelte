@@ -2,7 +2,6 @@
   import CloseIcon from 'virtual:icons/mdi/close.svg'
   import BuildInfo from './build-info.svelte'
   let {activeKeyboard} = $props()
-  console.log(activeKeyboard)
 </script>
 
 <div>

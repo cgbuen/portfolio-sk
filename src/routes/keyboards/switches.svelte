@@ -17,6 +17,11 @@
     Object.keys(filters)
       .filter((key) => filters[key])
       .reduce((acc, key) => acc.concat(switches[key]), [])
+      .filter((switchset: Switchset) => {
+        return (switchset.name ?? '')
+          .toLowerCase()
+          .includes((search ?? '').toLowerCase())
+      })
       .toSorted((x: Switchset, y: Switchset) => {
         return y.purchase_date.localeCompare(x.purchase_date)
       }),

@@ -35,7 +35,7 @@
       <input
         class="input input-sm"
         type="text"
-        placeholder="Search"
+        placeholder="Search by name..."
         oninput={updateSearch}
       />
     </div>

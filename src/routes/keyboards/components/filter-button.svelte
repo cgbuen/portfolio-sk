@@ -32,6 +32,7 @@
     flex: 1;
     font-weight: bold;
     padding: 5px 0 5px 10px;
+    white-space: nowrap;
   }
   .icon-wrapper {
     border-radius: 2px;

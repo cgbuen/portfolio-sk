@@ -104,6 +104,9 @@
     display: flex;
     margin-right: 15px;
   }
+  .filter-section {
+    display: flex;
+  }
   .filter-label {
     display: inline-block;
     font-weight: bold;

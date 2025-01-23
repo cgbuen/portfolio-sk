@@ -20,9 +20,9 @@
         <MenuIcon {open} />
       </button>
       <div class="header-logo-wrapper">
-        <a class="header-logo text-neutral-900 dark:text-white" href="/"
-          >cgbuen</a
-        >
+        <a class="header-logo text-neutral-900 dark:text-white" href="/">
+          cgbuen
+        </a>
       </div>
       {#if innerWidth >= 953}
         <div class="nav-tabs">

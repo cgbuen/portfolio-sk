@@ -22,11 +22,18 @@
     menuOpen = !menuOpen
   }
   let {children} = $props()
+  let cw = $state(0)
+  let iw = $state(0)
 </script>
 
-<div class="body-inner {menuOpen ? 'open' : ''}">
+<svelte:window bind:innerWidth={iw} />
+
+<div
+  class="body-inner {menuOpen ? 'open' : ''}"
+  style="padding-right: {menuOpen ? iw - cw : 0}px"
+>
   <Header open={menuOpen} {toggleOpen} />
-  <div class="outer-wrapper">
+  <div class="outer-wrapper" bind:clientWidth={cw}>
     <div class={page.data.isHome ? '' : 'page-wrapper'}>
       {@render children()}
     </div>
@@ -44,7 +51,6 @@
     height: 100%;
     overflow: hidden;
     position: absolute;
-    padding-right: 15px;
     width: 100%;
   }
   .outer-wrapper {

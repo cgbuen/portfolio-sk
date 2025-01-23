@@ -10,11 +10,18 @@
     mounted: true,
     unused: true,
     onTheWay: true,
+    forSale: true,
   })
+  let search = $state('')
   let displayedList: Keyset[] = $derived(
     Object.keys(filters)
       .filter((key) => filters[key])
       .reduce((acc, key) => acc.concat(keysets[key]), [])
+      .filter((keyset: Keyset) => {
+        return (keyset.keyset ?? '')
+          .toLowerCase()
+          .includes((search ?? '').toLowerCase())
+      })
       .toSorted((x: Keyset, y: Keyset) => {
         return y.purchase_date.localeCompare(x.purchase_date)
       }),
@@ -30,6 +37,11 @@
     }
   }
 
+  const updateSearch = (e: Event) => {
+    const target = e.target as HTMLInputElement
+    search = target.value
+  }
+
   const toggleGridView = (option: boolean) => {
     return () => {
       gridView = option
@@ -39,12 +51,13 @@
 
 <div>
   <TopSection
+    data={keysets}
     {displayedList}
     {filters}
     {gridView}
-    data={keysets}
-    {toggleGridView}
     {updateFilter}
+    {updateSearch}
+    {toggleGridView}
   />
   <div class="grid-container">
     {#if gridView}

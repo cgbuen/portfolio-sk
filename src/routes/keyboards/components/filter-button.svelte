@@ -31,7 +31,7 @@
     display: inline-block;
     flex: 1;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 5px 0 5px 10px;
   }
   .icon-wrapper {
     border-radius: 2px;

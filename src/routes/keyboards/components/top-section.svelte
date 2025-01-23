@@ -3,40 +3,59 @@
   import GridIcon from 'virtual:icons/mdi/view-grid-outline'
   import ListIcon from 'virtual:icons/mdi/view-list'
 
-  let {displayedList, filters, gridView, data, toggleGridView, updateFilter} =
-    $props()
+  let {
+    displayedList,
+    filters,
+    gridView,
+    data,
+    toggleGridView,
+    updateFilter,
+    updateSearch,
+  } = $props()
 </script>
 
 <div class="top-section">
-  <div class="filter-section-wrapper">
-    <div class="filter-label">Filters:</div>
-    <div class="filter-section">
-      {#each Object.keys(filters) as filter}
-        {#if data[filter].length > 0}
-          <FilterButton
-            name={filter}
-            count={data[filter].length}
-            active={filters[filter]}
-            onclick={updateFilter(filter)}
-          />
-        {/if}
-      {/each}
+  <div class="left">
+    <div class="filter-section-wrapper">
+      <div class="filter-label">Filters:</div>
+      <div class="filter-section">
+        {#each Object.keys(filters) as filter}
+          {#if data[filter].length > 0}
+            <FilterButton
+              name={filter}
+              count={data[filter].length}
+              active={filters[filter]}
+              onclick={updateFilter(filter)}
+            />
+          {/if}
+        {/each}
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <input
+        class="input input-sm"
+        type="text"
+        placeholder="Search"
+        oninput={updateSearch}
+      />
     </div>
   </div>
-  <div class="results-count">{displayedList.length} results</div>
-  <div class="view-options">
-    <button
-      class="view-option {gridView ? 'active' : ''}"
-      onclick={toggleGridView(true)}
-    >
-      <GridIcon />
-    </button>
-    <button
-      class="view-option {gridView ? '' : 'active'}"
-      onclick={toggleGridView(false)}
-    >
-      <ListIcon />
-    </button>
+  <div class="right">
+    <div class="results-count">{displayedList.length} results</div>
+    <div class="view-options">
+      <button
+        class="view-option {gridView ? 'active' : ''}"
+        onclick={toggleGridView(true)}
+      >
+        <GridIcon />
+      </button>
+      <button
+        class="view-option {gridView ? '' : 'active'}"
+        onclick={toggleGridView(false)}
+      >
+        <ListIcon />
+      </button>
+    </div>
   </div>
 </div>
 
@@ -44,16 +63,29 @@
   .top-section {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 15px;
+  }
+  .left,
+  .right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .right {
+    margin-left: 10px;
+  }
+  .input {
+    background: white;
+    color: #171717;
+    &:focus {
+      outline-color: #69c;
+    }
   }
   .results-count {
     font-size: 18px;
     font-weight: bold;
     text-align: right;
     white-space: nowrap;
-    flex: 1;
-    justify-content: end;
     margin-right: 10px;
   }
   .view-options {
@@ -70,6 +102,7 @@
   }
   .filter-section-wrapper {
     display: flex;
+    margin-right: 15px;
   }
   .filter-label {
     display: inline-block;

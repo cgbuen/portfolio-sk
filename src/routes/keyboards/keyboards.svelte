@@ -15,10 +15,16 @@
     onTheWay: false,
     forSale: false,
   })
+  let search = $state('')
   let displayedList: Keyboard[][] = $derived(
     Object.keys(filters)
       .filter((key) => filters[key])
       .reduce((acc, key) => acc.concat(keyboards[key]), [])
+      .filter((keyboard: Keyboard[]) => {
+        return (keyboard[0]?.name ?? '')
+          .toLowerCase()
+          .includes((search ?? '').toLowerCase())
+      })
       .toSorted((x: Keyboard[], y: Keyboard[]) => {
         return useDate(y).value.localeCompare(useDate(x).value)
       }),
@@ -29,6 +35,11 @@
       activeKeyboard.keyboard = buildSet
       activeKeyboard.buildActive = 0
     }
+  }
+
+  const updateSearch = (e: Event) => {
+    const target = e.target as HTMLInputElement
+    search = target.value
   }
 
   const updateFilter = (filter: string) => {
@@ -46,12 +57,13 @@
 
 <div>
   <TopSection
+    data={keyboards}
     {displayedList}
     {filters}
     {gridView}
-    data={keyboards}
-    {toggleGridView}
     {updateFilter}
+    {updateSearch}
+    {toggleGridView}
   />
   <div class="grid-container">
     {#if gridView}

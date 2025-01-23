@@ -12,6 +12,7 @@
     ready: true,
     tune: true,
   })
+  let search = $state('')
   let displayedList: Switchset[] = $derived(
     Object.keys(filters)
       .filter((key) => filters[key])
@@ -31,6 +32,11 @@
     }
   }
 
+  const updateSearch = (e: Event) => {
+    const target = e.target as HTMLInputElement
+    search = target.value
+  }
+
   const toggleGridView = (option: boolean) => {
     return () => {
       gridView = option
@@ -40,11 +46,12 @@
 
 <div>
   <TopSection
+    data={switches}
     {displayedList}
     {filters}
     {gridView}
-    data={switches}
     {toggleGridView}
+    {updateSearch}
     {updateFilter}
   />
   <div class="grid-container">

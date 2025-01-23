@@ -100,10 +100,10 @@ export async function GET() {
 
   const keysetsResponse = await responses[1].json()
   const keysetsArray = keysetsResponse
-    .filter((keyset: Keyset) =>
-      ['Mounted', 'Unused'].includes(keyset.mount_status),
-    )
     .map((keyset: Keyset) => {
+      if (keyset.mount_status.includes('or sale')) {
+        keyset.mount_status = 'For sale'
+      }
       keyset.src = `${PUBLIC_ASSET}/keyboards/${keyset.src}.jpg`
       return keyset
     })
@@ -120,6 +120,9 @@ export async function GET() {
     ),
     onTheWay: keysetsArray.filter(
       (keyset: Keyset) => keyset.mount_status === 'On the way',
+    ),
+    forSale: keysetsArray.filter(
+      (keyset: Keyset) => keyset.mount_status === 'For sale',
     ),
   }
 

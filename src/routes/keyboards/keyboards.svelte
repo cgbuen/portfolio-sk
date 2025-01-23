@@ -1,4 +1,5 @@
 <script lang="ts">
+  import {debounce} from 'ts-debounce'
   import {page} from '$app/state'
   import {activeKeyboard} from '$lib/state/active-keyboard.svelte'
   import {GridSquare} from './components'
@@ -37,16 +38,16 @@
     }
   }
 
-  const updateSearch = (e: Event) => {
-    const target = e.target as HTMLInputElement
-    search = target.value
+  const updateFilter = (filter: string) => {
+    return debounce(() => {
+      filters[filter] = !filters[filter]
+    }, 50)
   }
 
-  const updateFilter = (filter: string) => {
-    return () => {
-      filters[filter] = !filters[filter]
-    }
-  }
+  const updateSearch = debounce((e: Event) => {
+    const target = e.target as HTMLInputElement
+    search = target.value
+  }, 75)
 
   const toggleGridView = (option: boolean) => {
     return () => {

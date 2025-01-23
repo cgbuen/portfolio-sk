@@ -1,4 +1,5 @@
 <script lang="ts">
+  import {debounce} from 'ts-debounce'
   import {page} from '$app/state'
   import type {Keyset} from '../api/keyboards/+server'
   import KeysetsList from './keysets-list.svelte'
@@ -32,15 +33,15 @@
   }
 
   const updateFilter = (filter: string) => {
-    return () => {
+    return debounce(() => {
       filters[filter] = !filters[filter]
-    }
+    }, 50)
   }
 
-  const updateSearch = (e: Event) => {
+  const updateSearch = debounce((e: Event) => {
     const target = e.target as HTMLInputElement
     search = target.value
-  }
+  }, 75)
 
   const toggleGridView = (option: boolean) => {
     return () => {

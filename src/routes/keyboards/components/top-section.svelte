@@ -76,7 +76,7 @@
   }
   .right {
     flex: 1;
-    margin-left: 10px;
+    margin-left: 15px;
   }
   .input-wrapper {
     margin-right: 10px;
@@ -109,7 +109,6 @@
   }
   .filter-section-wrapper {
     display: flex;
-    margin-right: 15px;
   }
   .filter-section {
     display: flex;

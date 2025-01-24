@@ -76,4 +76,10 @@
     border-top: 2px solid #69c;
     padding-top: 15px;
   }
+  @media (max-width: 400px) {
+    .tab {
+      font-size: 16px;
+      padding: 10px 12px;
+    }
+  }
 </style>

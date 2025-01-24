@@ -18,20 +18,4 @@
 </Modal>
 
 <style>
-  .single {
-    background: rgba(0, 0, 0, 0.5);
-    max-width: 35%;
-    padding: 15px;
-  }
-  .background {
-    background-position: 50% 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-  }
 </style>

@@ -17,12 +17,12 @@
     <tr>
       <th></th>
       <th class="text-neutral-900 dark:text-white">Name</th>
-      <th class="text-neutral-900 dark:text-white">Purchased</th>
-      <th class="text-neutral-900 dark:text-white">Mount</th>
-      <th class="text-neutral-900 dark:text-white">Type</th>
-      <th class="text-neutral-900 dark:text-white">Status</th>
+      <th class="hide-mobile text-neutral-900 dark:text-white">Purchased</th>
+      <th class="hide-tablet text-neutral-900 dark:text-white">Mount</th>
+      <th class="hide-tablet text-neutral-900 dark:text-white">Type</th>
+      <th class="hide-mobile text-neutral-900 dark:text-white">Status</th>
       <th class="text-neutral-900 dark:text-white">Keyboard</th>
-      <th class="text-neutral-900 dark:text-white">Weight</th>
+      <th class="hide-tablet text-neutral-900 dark:text-white">Weight</th>
     </tr>
   </thead>
   <tbody>
@@ -39,20 +39,26 @@
         <ClickableTd labelFor="switches-modal">
           {switchset.name}
         </ClickableTd>
-        <ClickableTd labelFor="switches-modal" style="white-space: nowrap">
+        <ClickableTd
+          labelFor="switches-modal"
+          style="white-space: nowrap"
+          hideMobile
+        >
           {switchset.purchase_date}
         </ClickableTd>
-        <ClickableTd labelFor="switches-modal">{switchset.mount}</ClickableTd>
-        <ClickableTd labelFor="switches-modal">
+        <ClickableTd labelFor="switches-modal" hideTablet
+          >{switchset.mount}</ClickableTd
+        >
+        <ClickableTd labelFor="switches-modal" hideTablet>
           {switchset.switch_type}
         </ClickableTd>
-        <ClickableTd labelFor="switches-modal">
+        <ClickableTd labelFor="switches-modal" hideMobile>
           {switchset.mount_status}
         </ClickableTd>
         <ClickableTd labelFor="switches-modal">
           {switchset.keyboard}
         </ClickableTd>
-        <ClickableTd labelFor="switches-modal">
+        <ClickableTd labelFor="switches-modal" hideTablet>
           {#if !EXCLUDE_WEIGHT.includes(switchset.weight_springs)}
             {switchset.weight_springs}
           {/if}

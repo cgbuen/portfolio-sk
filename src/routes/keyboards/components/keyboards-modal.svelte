@@ -38,13 +38,8 @@
 </Modal>
 
 <style>
-  .single {
-    padding: 15px;
-  }
-  .single,
   .collapses {
-    background: rgba(0, 0, 0, 0.5);
-    max-width: 35%;
+    padding: 0;
   }
   .collapse {
     border-radius: 0;

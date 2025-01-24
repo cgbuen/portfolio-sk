@@ -9,13 +9,13 @@
     <tr>
       <th></th>
       <th class="text-neutral-900 dark:text-white">Name</th>
-      <th class="text-neutral-900 dark:text-white">Date</th>
-      <th class="text-neutral-900 dark:text-white">Type</th>
-      <th class="text-neutral-900 dark:text-white">Status</th>
+      <th class="hide-mobile text-neutral-900 dark:text-white">Date</th>
+      <th class="hide-tablet text-neutral-900 dark:text-white">Type</th>
+      <th class="hide-mobile text-neutral-900 dark:text-white">Status</th>
       <th class="text-neutral-900 dark:text-white">Keyboard</th>
-      <th class="text-neutral-900 dark:text-white">6UC</th>
-      <th class="text-neutral-900 dark:text-white">6UO</th>
-      <th class="text-neutral-900 dark:text-white">Quality</th>
+      <th class="hide-tablet text-neutral-900 dark:text-white">6UC</th>
+      <th class="hide-tablet text-neutral-900 dark:text-white">6UO</th>
+      <th class="hide-tablet text-neutral-900 dark:text-white">Quality</th>
     </tr>
   </thead>
   <tbody>
@@ -30,23 +30,45 @@
           />
         </ClickableTd>
         <ClickableTd labelFor="keysets-modal">{keyset.keyset}</ClickableTd>
-        <ClickableTd labelFor="keysets-modal" style="white-space: nowrap">
+        <ClickableTd
+          labelFor="keysets-modal"
+          style="white-space: nowrap"
+          hideMobile
+        >
           {keyset.purchase_date}
         </ClickableTd>
-        <ClickableTd labelFor="keysets-modal">{keyset.mount}</ClickableTd>
-        <ClickableTd labelFor="keysets-modal">{keyset.mount_status}</ClickableTd
-        >
+        <ClickableTd labelFor="keysets-modal" hideTablet>
+          {keyset.mount}
+        </ClickableTd>
+        <ClickableTd labelFor="keysets-modal" hideMobile>
+          {keyset.mount_status}
+        </ClickableTd>
         <ClickableTd labelFor="keysets-modal">{keyset.keyboard}</ClickableTd>
-        <ClickableTd labelFor="keysets-modal" style="text-align: center">
+        <ClickableTd
+          labelFor="keysets-modal"
+          style="text-align: center"
+          hideTablet
+        >
           {keyset.u6_center}
         </ClickableTd>
-        <ClickableTd labelFor="keysets-modal" style="text-align: center">
+        <ClickableTd
+          labelFor="keysets-modal"
+          style="text-align: center"
+          hideTablet
+        >
           {keyset.u6_off}
         </ClickableTd>
-        <ClickableTd labelFor="keysets-modal" style="text-align: center">
+        <ClickableTd
+          labelFor="keysets-modal"
+          style="text-align: center"
+          hideTablet
+        >
           {legendQuality[keyset.lq]}
         </ClickableTd>
       </tr>
     {/each}
   </tbody>
 </table>
+
+<style>
+</style>

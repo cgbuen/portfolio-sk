@@ -37,4 +37,16 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  @media (max-width: 600px) {
+    img {
+      margin: 0 auto;
+    }
+    .grid-square-wrapper {
+      display: block;
+      text-align: center;
+    }
+    .grid-square {
+      display: inline-block;
+    }
+  }
 </style>

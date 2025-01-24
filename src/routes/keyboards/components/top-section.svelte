@@ -31,6 +31,8 @@
         {/each}
       </div>
     </div>
+  </div>
+  <div class="right">
     <div class="input-wrapper">
       <input
         class="input input-sm"
@@ -39,22 +41,22 @@
         oninput={updateSearch}
       />
     </div>
-  </div>
-  <div class="right">
-    <div class="results-count">{displayedList.length} results</div>
-    <div class="view-options">
-      <button
-        class="view-option {gridView ? 'active' : ''}"
-        onclick={toggleGridView(true)}
-      >
-        <GridIcon />
-      </button>
-      <button
-        class="view-option {gridView ? '' : 'active'}"
-        onclick={toggleGridView(false)}
-      >
-        <ListIcon />
-      </button>
+    <div class="right-corner">
+      <div class="results-count">{displayedList.length} results</div>
+      <div class="view-options">
+        <button
+          class="view-option {gridView ? 'active' : ''}"
+          onclick={toggleGridView(true)}
+        >
+          <GridIcon />
+        </button>
+        <button
+          class="view-option {gridView ? '' : 'active'}"
+          onclick={toggleGridView(false)}
+        >
+          <ListIcon />
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -66,13 +68,17 @@
     margin-bottom: 15px;
   }
   .left,
-  .right {
+  .right,
+  .right-corner {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .right {
     margin-left: 10px;
+  }
+  .input-wrapper {
+    margin-right: 10px;
   }
   .input {
     background: white;
@@ -111,5 +117,33 @@
     display: inline-block;
     font-weight: bold;
     margin-top: 6px;
+  }
+  @media (max-width: 900px) {
+    .top-section {
+      display: block;
+    }
+    .left {
+      margin-bottom: 10px;
+    }
+    .right {
+      margin-left: 0;
+    }
+    .input-wrapper,
+    .input {
+      height: 3rem;
+      width: 100%;
+    }
+  }
+  @media (max-width: 600px) {
+    .left,
+    .right {
+      display: block;
+    }
+    .input-wrapper {
+      margin-bottom: 10px;
+    }
+    .filter-section {
+      display: block;
+    }
   }
 </style>

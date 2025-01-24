@@ -141,3 +141,46 @@ body {
     }
   }
 }
+
+.single, .collapses {
+  background: rgba(0, 0, 0, 0.5);
+  max-width: 35%;
+  padding: 15px;
+}
+
+.background {
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+@media (max-width: 900px) {
+  .grid-container {
+    justify-content: space-evenly;
+  }
+}
+@media (max-width: 800px) {
+  .hide-tablet {
+    display: none;
+  }
+  .single, .collapses {
+    max-width: 50%;
+  }
+}
+@media (max-width: 600px) {
+  .grid-container {
+    display: block;
+  }
+  .hide-mobile {
+    display: none;
+  }
+  .single, .collapses {
+    max-width: 100%;
+  }
+}

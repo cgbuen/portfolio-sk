@@ -34,6 +34,12 @@
     padding: 5px 0 5px 10px;
     white-space: nowrap;
   }
+  @media (max-width: 600px) {
+    .filter {
+      flex: none;
+      white-space: normal;
+    }
+  }
   .icon-wrapper {
     border-radius: 2px;
     display: inline-block;

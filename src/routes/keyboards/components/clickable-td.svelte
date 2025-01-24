@@ -1,8 +1,18 @@
 <script>
-  let {children, style = '', labelFor, hasImg = false} = $props()
+  let {
+    children,
+    style = '',
+    labelFor,
+    hasImg = false,
+    hideTablet = false,
+    hideMobile = false,
+  } = $props()
 </script>
 
-<td {style}>
+<td
+  {style}
+  class="{hideTablet ? 'hide-tablet' : ''} {hideMobile ? 'hide-mobile' : ''}"
+>
   <label class="modal-td" for={labelFor}>
     <div class="inner-label">{@render children()}</div>
     <div class="cheat">
@@ -48,5 +58,22 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+  }
+  @media (max-width: 800px) {
+    .hide-tablet {
+      display: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .modal-td {
+      padding: 0.75rem 0.5rem;
+    }
+    .hide-mobile {
+      display: none;
+    }
+    .cheat .img {
+      height: 33.25px;
+      width: 50px;
+    }
   }
 </style>

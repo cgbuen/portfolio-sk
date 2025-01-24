@@ -75,6 +75,7 @@
     align-items: center;
   }
   .right {
+    flex: 1;
     margin-left: 10px;
   }
   .input-wrapper {

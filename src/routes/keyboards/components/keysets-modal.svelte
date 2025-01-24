@@ -11,7 +11,7 @@
     </div>
   {/if}
   <div
-    class="background"
+    class="background {(activeKeyset.keyset?.src ?? '').includes('unavailable') ? 'unavailable' : ''}"
     style="background-image: url({activeKeyset.keyset?.src})"
   ></div>
 </Modal>

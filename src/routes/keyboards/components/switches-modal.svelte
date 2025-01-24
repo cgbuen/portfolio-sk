@@ -12,7 +12,7 @@
     </div>
   {/if}
   <div
-    class="background"
+    class="background unavailable"
     style="background-image: url({PUBLIC_ASSET}/keyboards/unavailable.jpg)"
   ></div>
 </Modal>

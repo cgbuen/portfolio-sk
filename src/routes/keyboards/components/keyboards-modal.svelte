@@ -31,7 +31,7 @@
   {/if}
   {#each activeKeyboard.keyboard as build, i}
     <div
-      class="background {activeKeyboard.buildActive === i ? '' : 'hide'}"
+      class="background {activeKeyboard.buildActive === i ? '' : 'hide'} {(build.src ?? '').includes('unavailable') ? 'unavailable' : ''}"
       style="background-image: url({build.src})"
     ></div>
   {/each}
@@ -52,16 +52,5 @@
     font-weight: bold;
     text-decoration: underline;
     text-decoration-color: #69c;
-  }
-  .background {
-    background-position: 50% 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
   }
 </style>

@@ -160,6 +160,11 @@ body {
   z-index: -1;
 }
 
+
+.unavailable {
+  background-position-y: 64%;
+}
+
 @media (max-width: 900px) {
   .grid-container {
     justify-content: space-evenly;

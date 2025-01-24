@@ -1,48 +1,22 @@
 <script lang="ts">
-  import CloseIcon from 'virtual:icons/mdi/close.svg'
   import KeysetInfo from './keyset-info.svelte'
+  import {Modal} from '$lib/components'
   let {activeKeyset} = $props()
 </script>
 
-<div>
-  <input type="checkbox" id="keysets-modal" class="modal-toggle" />
-  <div class="modal" role="dialog">
-    <div class="modal-box max-w-6xl bg-teal-50 dark:bg-neutral-900">
-      <label class="close" for="keysets-modal"><CloseIcon /></label>
-      <h2>{activeKeyset.keyset?.keyset}</h2>
-      <div class="modal-content-container">
-        {#if activeKeyset.keyset}
-          <div class="single">
-            <KeysetInfo keyset={activeKeyset.keyset} />
-          </div>
-        {/if}
-        <div
-          class="background"
-          style="background-image: url({activeKeyset.keyset?.src})"
-        ></div>
-      </div>
+<Modal id="keysets-modal" title={activeKeyset.keyset?.keyset}>
+  {#if activeKeyset.keyset}
+    <div class="single">
+      <KeysetInfo keyset={activeKeyset.keyset} />
     </div>
-  </div>
-</div>
+  {/if}
+  <div
+    class="background"
+    style="background-image: url({activeKeyset.keyset?.src})"
+  ></div>
+</Modal>
 
 <style>
-  .modal-box {
-    border-radius: 0;
-    padding: 20px;
-    position: relative;
-  }
-  .close {
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-  }
-  .modal-content-container {
-    color: white;
-    min-height: 450px;
-    padding: 15px;
-    position: relative;
-  }
   .single {
     background: rgba(0, 0, 0, 0.5);
     max-width: 35%;

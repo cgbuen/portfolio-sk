@@ -1,69 +1,43 @@
 <script lang="ts">
-  import CloseIcon from 'virtual:icons/mdi/close.svg'
   import BuildInfo from './keyboards-build-info.svelte'
+  import {Modal} from '$lib/components'
   let {activeKeyboard} = $props()
 </script>
 
-<div>
-  <input type="checkbox" id="keyboards-modal" class="modal-toggle" />
-  <div class="modal" role="dialog">
-    <div class="modal-box max-w-6xl bg-teal-50 dark:bg-neutral-900">
-      <label class="close" for="keyboards-modal"><CloseIcon /></label>
-      <h2>{activeKeyboard.keyboard[0]?.name}</h2>
-      <div class="modal-content-container">
-        {#if activeKeyboard.keyboard.length === 1}
-          <div class="single">
-            <BuildInfo build={activeKeyboard.keyboard[0]} />
-          </div>
-        {:else}
-          <div class="collapses">
-            {#each activeKeyboard.keyboard as build, i}
-              <div class="collapse collapse-arrow">
-                <input
-                  type="radio"
-                  name="build-accordion"
-                  onclick={() => {
-                    activeKeyboard.buildActive = i
-                  }}
-                  checked={activeKeyboard.buildActive === i}
-                />
-                <div class="collapse-title">Build {i + 1}</div>
-                <div class="collapse-content">
-                  <BuildInfo {build} />
-                </div>
-              </div>
-            {/each}
-          </div>
-        {/if}
-        {#each activeKeyboard.keyboard as build, i}
-          <div
-            class="background {activeKeyboard.buildActive === i ? '' : 'hide'}"
-            style="background-image: url({build.src})"
-          ></div>
-        {/each}
-      </div>
+<Modal id="keyboards-modal" title={activeKeyboard.keyboard[0]?.name}>
+  {#if activeKeyboard.keyboard.length === 1}
+    <div class="single">
+      <BuildInfo build={activeKeyboard.keyboard[0]} />
     </div>
-  </div>
-</div>
+  {:else}
+    <div class="collapses">
+      {#each activeKeyboard.keyboard as build, i}
+        <div class="collapse collapse-arrow">
+          <input
+            type="radio"
+            name="build-accordion"
+            onclick={() => {
+              activeKeyboard.buildActive = i
+            }}
+            checked={activeKeyboard.buildActive === i}
+          />
+          <div class="collapse-title">Build {i + 1}</div>
+          <div class="collapse-content">
+            <BuildInfo {build} />
+          </div>
+        </div>
+      {/each}
+    </div>
+  {/if}
+  {#each activeKeyboard.keyboard as build, i}
+    <div
+      class="background {activeKeyboard.buildActive === i ? '' : 'hide'}"
+      style="background-image: url({build.src})"
+    ></div>
+  {/each}
+</Modal>
 
 <style>
-  .modal-box {
-    border-radius: 0;
-    padding: 20px;
-    position: relative;
-  }
-  .close {
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-  }
-  .modal-content-container {
-    color: white;
-    min-height: 450px;
-    padding: 15px;
-    position: relative;
-  }
   .single {
     padding: 15px;
   }

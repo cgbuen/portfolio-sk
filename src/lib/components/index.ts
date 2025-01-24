@@ -6,6 +6,16 @@ import Drawer from './drawer.svelte'
 import Footer from './footer.svelte'
 import Header from './header.svelte'
 import MenuIcon from './menu-icon.svelte'
+import Modal from './modal.svelte'
 import Social from './social.svelte'
 
-export {Card, ColorSchemePicker, Drawer, Footer, Header, MenuIcon, Social}
+export {
+  Card,
+  ColorSchemePicker,
+  Drawer,
+  Footer,
+  Header,
+  MenuIcon,
+  Modal,
+  Social,
+}
